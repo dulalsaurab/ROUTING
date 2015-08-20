@@ -6,8 +6,8 @@
 #ifndef ROUTING_TABLE_HPP
 #define ROUTING_TABLE_HPP
 
-#include <list>
 #include <map>
+#include <set>
 #include <string>
 
 class NextHop
@@ -17,6 +17,20 @@ public:
     : face(face)
     , cost(cost)
   {
+  }
+
+  bool
+  operator<(const NextHop& other) const
+  {
+    if (this->cost < other.cost) {
+      return true;
+    }
+    else if (this->cost == other.cost) {
+      return this->face < other.face;
+    }
+    else {
+      return false;
+    }
   }
 
 public:
@@ -30,11 +44,11 @@ public:
   void
   addNextHop(const std::string& dst, const NextHop& hop)
   {
-    m_table[dst].push_back(hop);
+    m_table[dst].insert(hop);
   }
 
 private:
-  std::map<std::string, std::list<NextHop>> m_table;
+  std::map<std::string, std::set<NextHop>> m_table;
 };
 
 #endif // ROUTING_TABLE_HPP
