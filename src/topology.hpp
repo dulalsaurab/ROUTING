@@ -10,6 +10,7 @@
 #include "node.hpp"
 
 #include <list>
+#include <map>
 
 class Topology
 {
@@ -17,7 +18,7 @@ public:
   void
   add(const Node& node)
   {
-    m_nodes.push_back(node);
+    m_nodes.insert(std::tie(node.getName(), node));
   }
 
   void
@@ -29,25 +30,37 @@ public:
   void
   print() const
   {
-    for (const Node& node : m_nodes) {
+    for (const auto& pair : m_nodes) {
+      const Node& node = pair.second;
+
       std::cout << "Node{ "
                 << "name: " << node.getName()
                 << ", angle: " << node.getAngle()
                 << ", radius: " << node.getRadius()
-                << "}" << std::endl;
+                << " Neighbors[ ";
+
+      for (const Node& neighbor : node.getNeighbors()) {
+        std::cout << neighbor.getName() << ", ";
+      }
+
+      std::cout << "] }" << std::endl;
     }
 
     for (const Link& link : m_links) {
       std::cout << "Link{ "
-              << "src: " << link.getSrc()
-              << ", dst: " << link.getDst()
-              << ", delay: " << link.getDelay()
-              << "}" << std::endl;
+                << "src: " << link.getSrc()
+                << ", dst: " << link.getDst()
+                << ", delay: " << link.getDelay()
+                << "}" << std::endl;
     }
   }
 
+  void
+  build();
+
 private:
-  std::list<Node> m_nodes;
+  typedef std::map<std::string, Node> NodeMap;
+  NodeMap m_nodes;
   std::list<Link> m_links;
 };
 

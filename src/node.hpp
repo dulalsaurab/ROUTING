@@ -7,6 +7,7 @@
 #define NODE_HPP
 
 #include <boost/lexical_cast.hpp>
+#include <list>
 #include <string>
 
 class Node
@@ -37,10 +38,24 @@ public:
     return m_radius;
   }
 
+  void
+  addNeighbor(const Node& node)
+  {
+    m_neighbors.push_back(node);
+  }
+
+  const std::list<Node>&
+  getNeighbors() const
+  {
+    return m_neighbors;
+  }
+
 private:
-  const std::string m_name;
+  std::string m_name;
   double m_angle;
   double m_radius;
+
+  std::list<Node> m_neighbors;
 };
 
 #endif // NODE_HPP

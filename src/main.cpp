@@ -27,9 +27,11 @@ main(int argc, char* argv[])
   TopologyLoader loader;
 
   if (loader.load(filename, topo)) {
-    topo.print();
+    topo.build();
   }
   else {
     exit(ERROR_LOAD);
   }
+
+  topo.print();
 }
