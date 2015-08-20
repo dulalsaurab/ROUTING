@@ -5,6 +5,10 @@
 
 #include "topology-loader.hpp"
 
+#include "link.hpp"
+#include "node.hpp"
+#include "topology.hpp"
+
 #include <iostream>
 
 std::string
@@ -22,7 +26,7 @@ TopologyLoader::getValueFromTokens(const Tokenizer& tokens, const std::string ke
 }
 
 bool
-TopologyLoader::load(const std::string& filename)
+TopologyLoader::load(const std::string& filename, Topology& topo)
 {
   std::cout << "Loading " << filename << "..." << std::endl;
 
@@ -30,7 +34,17 @@ TopologyLoader::load(const std::string& filename)
   file.open(filename, std::ifstream::in);
 
   if (file.is_open()) {
-    processFile(file);
+
+    while (file.good()) {
+      std::string line;
+      std::getline(file, line);
+
+      if (line == "[nodes]") {
+        loadNodes(file, topo);
+        loadLinks(file, topo);
+      }
+    }
+
     return true;
   }
   else {
@@ -40,21 +54,7 @@ TopologyLoader::load(const std::string& filename)
 }
 
 void
-TopologyLoader::processFile(std::ifstream& file)
-{
-  while (file.good()) {
-    std::string line;
-    std::getline(file, line);
-
-    if (line == "[nodes]") {
-      loadNodes(file);
-      loadLinks(file);
-    }
-  }
-}
-
-void
-TopologyLoader::loadNodes(std::ifstream& file)
+TopologyLoader::loadNodes(std::ifstream& file, Topology& topo)
 {
   while (file.good()) {
     std::string line;
@@ -74,11 +74,7 @@ TopologyLoader::loadNodes(std::ifstream& file)
       std::string angle = getNodeAngle(tokens);
       std::string radius = getNodeRadius(tokens);
 
-      std::cout << "Node{ "
-                << "name: " << name
-                << ", angle: " << angle
-                << ", radius: " << radius
-                << "}" << std::endl;
+      topo.add(Node(name, angle, radius));
     }
   }
 }
@@ -107,7 +103,7 @@ TopologyLoader::getNodeRadius(const Tokenizer& tokens)
 }
 
 void
-TopologyLoader::loadLinks(std::ifstream& file)
+TopologyLoader::loadLinks(std::ifstream& file, Topology& topo)
 {
   while (file.good()) {
     std::string line;
@@ -123,11 +119,10 @@ TopologyLoader::loadLinks(std::ifstream& file)
     std::pair<std::string, std::string> nodes = getNodesFromLink(tokens);
     std::string delay = getDelay(tokens);
 
-    std::cout << "Link{ "
-              << "src: " << nodes.first
-              << ", dst: " << nodes.second
-              << ", delay: " << delay
-              << "}" << std::endl;
+    // Remove "ms" from delay
+    delay = delay.substr(0, delay.find('m'));
+
+    topo.add(Link(nodes.first, nodes.second, delay));
   }
 }
 

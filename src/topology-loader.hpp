@@ -10,24 +10,23 @@
 #include <fstream>
 #include <string>
 
+class Topology;
+
 class TopologyLoader
 {
 public:
   typedef boost::tokenizer<boost::char_separator<char>> Tokenizer;
 
   bool
-  load(const std::string& filename);
+  load(const std::string& filename, Topology& topo);
 
 private:
-  void
-  processFile(std::ifstream& file);
-
   std::string
   getValueFromTokens(const Tokenizer& tokens, const std::string key);
 
 private:
   void
-  loadNodes(std::ifstream& file);
+  loadNodes(std::ifstream& file, Topology& topo);
 
   std::string
   getNodeName(const Tokenizer& tokens);
@@ -40,7 +39,7 @@ private:
 
 private:
   void
-  loadLinks(std::ifstream& file);
+  loadLinks(std::ifstream& file, Topology& topo);
 
   std::pair<std::string, std::string>
   getNodesFromLink(const Tokenizer& tokens);

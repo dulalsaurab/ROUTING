@@ -3,6 +3,7 @@
  * Copyright (c) 2015, The University of Memphis.
  **/
 
+#include "topology.hpp"
 #include "topology-loader.hpp"
 
 #include <iostream>
@@ -22,10 +23,11 @@ main(int argc, char* argv[])
 
   const std::string filename = argv[1];
 
+  Topology topo;
   TopologyLoader loader;
 
-  if (loader.load(filename)) {
-
+  if (loader.load(filename, topo)) {
+    topo.print();
   }
   else {
     exit(ERROR_LOAD);
