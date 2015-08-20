@@ -41,10 +41,25 @@ public:
 class RoutingTable
 {
 public:
+  typedef std::map<std::string, std::set<NextHop>> NextHopTable;
+
   void
   addNextHop(const std::string& dst, const NextHop& hop)
   {
     m_table[dst].insert(hop);
+  }
+
+  const NextHop*
+  getBestRoute(const std::string& dst) const
+  {
+    NextHopTable::const_iterator it = m_table.find(dst);
+
+    if (it != m_table.end() && !it->second.empty()) {
+      return &(*(it->second.begin()));
+    }
+    else {
+      return nullptr;
+    }
   }
 
 private:

@@ -58,6 +58,12 @@ public:
     return m_hyperbolicRoutingTable;
   }
 
+  const RoutingTable&
+  getHyperbolicRoutingTable() const
+  {
+    return m_hyperbolicRoutingTable;
+  }
+
 private:
   std::string m_name;
   double m_angle;

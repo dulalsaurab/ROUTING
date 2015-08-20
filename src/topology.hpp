@@ -66,6 +66,19 @@ public:
     return m_nodes;
   }
 
+  const Node*
+  getNode(std::string name) const
+  {
+    NodeMap::const_iterator it = m_nodes.find(name);
+
+    if (it != m_nodes.end()) {
+      return &(it->second);
+    }
+    else {
+      return nullptr;
+    }
+  }
+
 private:
   NodeMap m_nodes;
   std::list<Link> m_links;
