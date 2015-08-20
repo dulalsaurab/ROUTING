@@ -10,6 +10,8 @@
 void
 Topology::build()
 {
+  std::cout << "Building topology..." << std::endl;
+
   // Assign neighbors
   for (const Link& link : m_links) {
     NodeMap::iterator srcIt = m_nodes.find(link.getSrc());
@@ -22,10 +24,16 @@ Topology::build()
     dst.addNeighbor(src);
   }
 
+  std::cout << "...Done" << std::endl;
+
   // Calculate HR routing tables for each node
   HyperbolicRoutingCalculator hrCalculator;
+
+  std::cout << "Calculating hyperbolic paths..." << std::endl;
 
   for (auto& pair : m_nodes) {
     hrCalculator.calculatePaths(*this, pair.second);
   }
+
+  std::cout << "...Done" << std::endl;
 }

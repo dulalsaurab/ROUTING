@@ -29,7 +29,7 @@ main(int argc, char* argv[])
 
   if (loader.load(filename, topo)) {
     topo.build();
-    topo.print();
+    //topo.print();
   }
   else {
     exit(ERROR_LOAD);

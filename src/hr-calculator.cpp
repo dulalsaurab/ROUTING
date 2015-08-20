@@ -21,12 +21,10 @@ const int32_t HyperbolicRoutingCalculator::ROUTER_NOT_FOUND = -1.0;
 void
 HyperbolicRoutingCalculator::calculatePaths(Topology& topo, Node& thisNode)
 {
-  std::cout << "Calculating hyperbolic paths" << std::endl;
-
   // Iterate over directly connected neighbors
-  for (const Node& adj : thisNode.getNeighbors()) {
+  for (const Node* adj : thisNode.getNeighbors()) {
 
-    std::string srcRouterName = adj.getName();
+    std::string srcRouterName = adj->getName();
 
     // Don't calculate nexthops for this router to other routers
     if (srcRouterName == thisNode.getName()) {
@@ -41,11 +39,11 @@ HyperbolicRoutingCalculator::calculatePaths(Topology& topo, Node& thisNode)
       const Node& dst = pair.second;
 
       // Don't calculate nexthops to this router or from a router to itself
-      if (dst.getName() != thisNode.getName() && dst.getName() != adj.getName()) {
+      if (dst.getName() != thisNode.getName() && dst.getName() != adj->getName()) {
 
         std::string dstRouterName = dst.getName();
 
-        double distance = getHyperbolicDistance(topo, adj, dst);
+        double distance = getHyperbolicDistance(topo, *adj, dst);
 
         // Could not compute distance
         if (distance == UNKNOWN_DISTANCE) {
@@ -54,7 +52,7 @@ HyperbolicRoutingCalculator::calculatePaths(Topology& topo, Node& thisNode)
           continue;
         }
 
-        addNextHop(adj.getName(), dstRouterName, distance, thisNode.getHyperbolicRoutingTable());
+        addNextHop(adj->getName(), dstRouterName, distance, thisNode.getHyperbolicRoutingTable());
       }
     }
   }
@@ -63,8 +61,8 @@ HyperbolicRoutingCalculator::calculatePaths(Topology& topo, Node& thisNode)
 double
 HyperbolicRoutingCalculator::getHyperbolicDistance(Topology& topo, const Node& src, const Node& dst)
 {
-  std::cout << "Calculating hyperbolic distance from " << src.getName()
-            << " to " << dst.getName() << std::endl;
+  //std::cout << "Calculating hyperbolic distance from " << src.getName()
+  //          << " to " << dst.getName() << std::endl;
 
   double distance = UNKNOWN_DISTANCE;
 
@@ -92,8 +90,8 @@ HyperbolicRoutingCalculator::getHyperbolicDistance(Topology& topo, const Node& s
                      (sinh(srcRadius) * sinh(dstRadius) * cos(diffTheta)));
   }
 
-  std::cout << "Distance from " << src.getName() << " to " << dst.getName()
-            << " is " << distance << std::endl;
+  //std::cout << "Distance from " << src.getName() << " to " << dst.getName()
+  //          << " is " << distance << std::endl;
 
   return distance;
 }
@@ -105,8 +103,8 @@ void HyperbolicRoutingCalculator::addNextHop(const std::string& face,
 {
   NextHop hop(face, cost);
 
-  std::cout << "Calculated NextHop{" << hop.face << ", " << hop.cost
-            << "} for destination: " << dst << std::endl;
+  //std::cout << "Calculated NextHop{" << hop.face << ", " << hop.cost
+  //          << "} for destination: " << dst << std::endl;
 
   routingTable.addNextHop(dst, hop);
 }

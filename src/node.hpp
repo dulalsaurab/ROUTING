@@ -43,10 +43,10 @@ public:
   void
   addNeighbor(const Node& node)
   {
-    m_neighbors.push_back(node);
+    m_neighbors.push_back(&node);
   }
 
-  const std::list<Node>&
+  const std::list<const Node*>&
   getNeighbors() const
   {
     return m_neighbors;
@@ -69,7 +69,7 @@ private:
   double m_angle;
   double m_radius;
 
-  std::list<Node> m_neighbors;
+  std::list<const Node*> m_neighbors;
   RoutingTable m_hyperbolicRoutingTable;
 };
 

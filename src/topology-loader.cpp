@@ -45,6 +45,8 @@ TopologyLoader::load(const std::string& filename, Topology& topo)
       }
     }
 
+    file.close();
+    std::cout << "...Done" << std::endl;
     return true;
   }
   else {
@@ -67,8 +69,6 @@ TopologyLoader::loadNodes(std::ifstream& file, Topology& topo)
     else {
       boost::char_separator<char> sep(" ");
       Tokenizer tokens(line, sep);
-
-
 
       std::string name = getNodeName(tokens);
       std::string angle = getNodeAngle(tokens);

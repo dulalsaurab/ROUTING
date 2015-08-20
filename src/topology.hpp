@@ -41,8 +41,8 @@ public:
                 << ", radius: " << node.getRadius()
                 << " Neighbors[ ";
 
-      for (const Node& neighbor : node.getNeighbors()) {
-        std::cout << neighbor.getName() << ", ";
+      for (const Node* neighbor : node.getNeighbors()) {
+        std::cout << neighbor->getName() << ", ";
       }
 
       std::cout << "] }" << std::endl;
