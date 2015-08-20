@@ -10,6 +10,8 @@
 #include <list>
 #include <string>
 
+#include "routing-table.hpp"
+
 class Node
 {
 public:
@@ -50,12 +52,19 @@ public:
     return m_neighbors;
   }
 
+  RoutingTable&
+  getHyperbolicRoutingTable()
+  {
+    return m_hyperbolicRoutingTable;
+  }
+
 private:
   std::string m_name;
   double m_angle;
   double m_radius;
 
   std::list<Node> m_neighbors;
+  RoutingTable m_hyperbolicRoutingTable;
 };
 
 #endif // NODE_HPP

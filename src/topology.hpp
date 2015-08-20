@@ -15,6 +15,8 @@
 class Topology
 {
 public:
+  typedef std::map<std::string, Node> NodeMap;
+
   void
   add(const Node& node)
   {
@@ -58,8 +60,13 @@ public:
   void
   build();
 
+  const NodeMap&
+  getNodes() const
+  {
+    return m_nodes;
+  }
+
 private:
-  typedef std::map<std::string, Node> NodeMap;
   NodeMap m_nodes;
   std::list<Link> m_links;
 };

@@ -5,6 +5,8 @@
 
 #include "topology.hpp"
 
+#include "hr-calculator.hpp"
+
 void
 Topology::build()
 {
@@ -18,5 +20,12 @@ Topology::build()
 
     src.addNeighbor(dst);
     dst.addNeighbor(src);
+  }
+
+  // Calculate HR routing tables for each node
+  HyperbolicRoutingCalculator hrCalculator;
+
+  for (auto& pair : m_nodes) {
+    hrCalculator.calculatePaths(*this, pair.second);
   }
 }
