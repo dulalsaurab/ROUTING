@@ -20,7 +20,7 @@ public:
   void
   add(const Node& node)
   {
-    m_nodes.insert(std::tie(node.getName(), node));
+    m_nodes.insert(std::pair<std::string, Node>(node.getName(), node));
   }
 
   void

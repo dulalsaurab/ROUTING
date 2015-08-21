@@ -10,8 +10,16 @@ HEADERS = $(wildcard $(INCLUDE_DIR)/*.hpp)
 SRC = $(wildcard $(SRC_DIR)/*.cpp)
 OBJECTS = $(patsubst $(SRC_DIR)/%.cpp, $(BUILD_DIR)/%.o, $(wildcard $(SRC_DIR)/*.cpp))
 
-$(BUILD_DIR)/%.o: $(SRC_DIR)/%.cpp $(HEADERS)
+all: hr-calc-path
+
+build:
+	mkdir $(BUILD_DIR)
+
+$(BUILD_DIR)/%.o: $(SRC_DIR)/%.cpp $(HEADERS) build bin
 	$(CC) -c $< $(CFLAGS) -o $@
+
+bin:
+	mkdir $(BIN_DIR)
 
 hr-calc-path: $(OBJECTS)
 	$(CC) $^ $(CFLAGS) -o $(BIN_DIR)/hr-calc-path

@@ -36,7 +36,7 @@ private:
   CommandMap m_commands;
 
   bool m_isRunning;
-  std::vector<const std::string> m_args;
+  std::vector<std::string> m_args;
 };
 
  #endif // COMMAND_PROMPT_HPP

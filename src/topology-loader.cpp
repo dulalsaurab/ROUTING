@@ -134,7 +134,7 @@ TopologyLoader::getNodesFromLink(const Tokenizer& tokens)
   std::string src = nodes.substr(0, nodes.find(':'));
   std::string dst = nodes.substr(nodes.find(':') + 1);
 
-  return std::tie(src, dst);
+  return std::pair<std::string, std::string>(src, dst);
 }
 
 std::string
