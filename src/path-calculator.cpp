@@ -18,6 +18,7 @@ PathCalculator::getPath(Topology& topo, const Node& src, const Node& dst)
 
   std::string path;
   const Node* current = &src;
+  double rtt = 0;
 
   std::set<std::string> visitedNodes;
 
@@ -34,6 +35,7 @@ PathCalculator::getPath(Topology& topo, const Node& src, const Node& dst)
 
     // Arrived at destination?
     if (current->getName() == dst.getName()) {
+      path += " (RTT: " + std::to_string(int(2*rtt)) + "ms)";
       return path;
     }
 
@@ -44,7 +46,13 @@ PathCalculator::getPath(Topology& topo, const Node& src, const Node& dst)
     const NextHop* hop = current->getHyperbolicRoutingTable().getBestRoute(dst.getName());
 
     if (hop != nullptr) {
-      current = topo.getNode(hop->face);
+      const Node* next = topo.getNode(hop->face);
+
+      // Find link to add to RTT
+      const Link* link = topo.findLink(current->getName(), next->getName());
+      rtt += link->getDelay();
+
+      current = next;
     }
     else {
       path += "No Nexthop";

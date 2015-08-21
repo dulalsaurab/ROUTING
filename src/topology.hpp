@@ -79,6 +79,31 @@ public:
     }
   }
 
+  const Link*
+  findLink(const std::string& src, const std::string& dst)
+  {
+    std::list<Link>::const_iterator it = std::find_if(m_links.begin(), m_links.end(),
+      [src, dst] (const Link& link) {
+        // Links are bidirectional
+        if ((link.getSrc() == src && link.getDst() == dst) ||
+            (link.getSrc() == dst && link.getDst() == src))
+        {
+          return true;
+        }
+        else {
+          return false;
+        }
+      }
+    );
+
+    if (it != m_links.end()) {
+      return &(*it);
+    }
+    else {
+      return nullptr;
+    }
+  }
+
 private:
   NodeMap m_nodes;
   std::list<Link> m_links;
