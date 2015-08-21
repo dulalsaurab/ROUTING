@@ -3,6 +3,7 @@
  * Copyright (c) 2015, The University of Memphis.
  **/
 
+#include "command-prompt.hpp"
 #include "path-calculator.hpp"
 #include "topology.hpp"
 #include "topology-loader.hpp"
@@ -35,20 +36,6 @@ main(int argc, char* argv[])
     exit(ERROR_LOAD);
   }
 
-  PathCalculator calculator;
-
-  Topology::NodeMap::const_iterator srcIt = topo.getNodes().begin();
-  Topology::NodeMap::const_iterator dstIt = topo.getNodes().begin();
-
-  for (const auto& srcPair : topo.getNodes()) {
-    const Node& src = srcPair.second;
-
-    for (const auto& dstPair : topo.getNodes()) {
-      const Node& dst = dstPair.second;
-
-      if (src.getName() != dst.getName()) {
-        std::cout << calculator.getPath(topo, src, dst) << std::endl;
-      }
-    }
-  }
+  CommandPrompt prompt(topo);
+  prompt.run();
 }

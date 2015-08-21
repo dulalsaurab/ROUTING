@@ -15,7 +15,7 @@ class PathCalculator
 {
 public:
   std::string
-  getPath(Topology& topo, const Node& src, const Node& dst);
+  getPath(const Topology& topo, const Node& src, const Node& dst);
 
 public:
   static const std::string NO_PATH_DISCONNECTED;

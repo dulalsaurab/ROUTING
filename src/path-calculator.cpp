@@ -12,7 +12,7 @@
 #include <iostream>
 
 std::string
-PathCalculator::getPath(Topology& topo, const Node& src, const Node& dst)
+PathCalculator::getPath(const Topology& topo, const Node& src, const Node& dst)
 {
   std::cout << "Calculating path from " << src.getName() << " to " << dst.getName() << std::endl;
 

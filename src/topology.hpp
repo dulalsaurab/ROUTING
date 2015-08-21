@@ -80,7 +80,7 @@ public:
   }
 
   const Link*
-  findLink(const std::string& src, const std::string& dst)
+  findLink(const std::string& src, const std::string& dst) const
   {
     std::list<Link>::const_iterator it = std::find_if(m_links.begin(), m_links.end(),
       [src, dst] (const Link& link) {
