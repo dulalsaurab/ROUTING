@@ -28,6 +28,9 @@ CommandPrompt::CommandPrompt(const Topology& topo)
   m_commands["t"] = std::bind(&CommandPrompt::getTimeouts, this);
   m_commands["timeout"] = std::bind(&CommandPrompt::getTimeouts, this);
 
+  // Get node pairs that should timeout
+  m_commands["help"] = std::bind(&CommandPrompt::printHelp, this);
+
   // Quit
   m_commands["exit"] = std::bind(&CommandPrompt::quit, this);
   m_commands["q"] = std::bind(&CommandPrompt::quit, this);
@@ -247,6 +250,16 @@ CommandPrompt::getTimeouts()
 
   if (nTimeouts == 0) {
     std::cout << "No timeouts expected" << std::endl;
+  }
+}
+
+void
+CommandPrompt::printHelp()
+{
+  std::cout << "Help - commands:" << std::endl;
+
+  for (const auto& cmd : m_commands) {
+    std::cout << "  " << cmd.first << std::endl;
   }
 }
 

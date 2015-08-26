@@ -32,6 +32,9 @@ private:
   getTimeouts();
 
   void
+  printHelp();
+
+  void
   quit();
 
 private:
