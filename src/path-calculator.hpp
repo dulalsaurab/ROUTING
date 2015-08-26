@@ -17,9 +17,41 @@ public:
   std::string
   getPath(const Topology& topo, const Node& src, const Node& dst);
 
+private:
+  struct PathAndRttPair
+  {
+    const std::string path;
+    const double rtt;
+
+    std::string
+    toString() const
+    {
+      std::string output;
+
+      output += path;
+
+      if (rtt != PathCalculator::INFINITE_RTT) {
+        output += " (RTT: " + std::to_string(int(rtt)) + ")";
+      }
+
+      output += "\n";
+
+      return output;
+    }
+  };
+
+  PathAndRttPair
+  getPath(const Topology& topo, const Node& src, const Node& dst, bool isHyperbolic);
+
+  std::string
+  getStretch(const PathAndRttPair& hr, const PathAndRttPair& ls) const;
+
 public:
   static const std::string NO_PATH_DISCONNECTED;
   static const std::string NO_PATH_LOOP;
+
+private:
+  static const double INFINITE_RTT;
 };
 
 #endif // PATH_CALCULATOR_HPP

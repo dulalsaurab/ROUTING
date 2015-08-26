@@ -50,12 +50,29 @@ public:
   }
 
   const NextHop*
-  getBestRoute(const std::string& dst) const
+  getBestRoute(const std::string& dst, const std::string& inFace) const
   {
     NextHopTable::const_iterator it = m_table.find(dst);
 
     if (it != m_table.end() && !it->second.empty()) {
-      return &(*(it->second.begin()));
+      const NextHopSet hops = it->second;
+      NextHopSet::const_iterator hop = hops.begin();
+
+      // Is the nexthop not the incoming Face?
+      if (hop->face != inFace) {
+        return &(*hop);
+      }
+      else {
+        // Do not use the incoming face, try to use the second best face
+        ++hop;
+
+        if (hop != hops.end()) {
+          return &(*hop);
+        }
+        else {
+          return nullptr;
+        }
+      }
     }
     else {
       return nullptr;
@@ -63,7 +80,8 @@ public:
   }
 
 private:
-  std::map<std::string, std::set<NextHop>> m_table;
+  typedef std::set<NextHop> NextHopSet;
+  std::map<std::string, NextHopSet> m_table;
 };
 
 #endif // ROUTING_TABLE_HPP

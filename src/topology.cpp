@@ -6,6 +6,7 @@
 #include "topology.hpp"
 
 #include "hr-calculator.hpp"
+#include "ls-calculator.hpp"
 
 void
 Topology::build()
@@ -28,11 +29,13 @@ Topology::build()
 
   // Calculate HR routing tables for each node
   HyperbolicRoutingCalculator hrCalculator;
+  LinkStateRoutingCalculator lsCalculator;
 
-  std::cout << "Calculating hyperbolic paths..." << std::endl;
+  std::cout << "Calculating paths..." << std::endl;
 
   for (auto& pair : m_nodes) {
     hrCalculator.calculatePaths(*this, pair.second);
+    lsCalculator.calculatePaths(*this, pair.second);
   }
 
   std::cout << "...Done" << std::endl;

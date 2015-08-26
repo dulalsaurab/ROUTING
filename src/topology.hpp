@@ -66,6 +66,12 @@ public:
     return m_nodes;
   }
 
+  const std::list<Link>&
+  getLinks() const
+  {
+    return m_links;
+  }
+
   const Node*
   getNode(std::string name) const
   {

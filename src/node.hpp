@@ -64,13 +64,27 @@ public:
     return m_hyperbolicRoutingTable;
   }
 
+  RoutingTable&
+  getLinkStateRoutingTable()
+  {
+    return m_linkStateRoutingTable;
+  }
+
+  const RoutingTable&
+  getLinkStateRoutingTable() const
+  {
+    return m_linkStateRoutingTable;
+  }
+
 private:
   std::string m_name;
   double m_angle;
   double m_radius;
 
   std::list<const Node*> m_neighbors;
+
   RoutingTable m_hyperbolicRoutingTable;
+  RoutingTable m_linkStateRoutingTable;
 };
 
 #endif // NODE_HPP

@@ -6,27 +6,23 @@
 #ifndef HR_CALCULATOR_HPP
 #define HR_CALCULATOR_HPP
 
+#include "routing-calculator.hpp"
+
 #include <string>
 
 class Node;
 class RoutingTable;
 class Topology;
 
-class HyperbolicRoutingCalculator
+class HyperbolicRoutingCalculator : public RoutingCalculator
 {
 public:
   void
-  calculatePaths(Topology& topo, Node& thisNode);
+  calculatePaths(Topology& topo, Node& thisNode) override;
 
 private:
   double
   getHyperbolicDistance(Topology& topo, const Node& src, const Node& dst);
-
-  void
-  addNextHop(const std::string& face,
-             const std::string& dst,
-             double cost,
-             RoutingTable& routingTable);
 
 private:
   static const double MATH_PI;

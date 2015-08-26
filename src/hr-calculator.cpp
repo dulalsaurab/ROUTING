@@ -95,16 +95,3 @@ HyperbolicRoutingCalculator::getHyperbolicDistance(Topology& topo, const Node& s
 
   return distance;
 }
-
-void HyperbolicRoutingCalculator::addNextHop(const std::string& face,
-                                             const std::string& dst,
-                                             double cost,
-                                             RoutingTable& routingTable)
-{
-  NextHop hop(face, cost);
-
-  //std::cout << "Calculated NextHop{" << hop.face << ", " << hop.cost
-  //          << "} for destination: " << dst << std::endl;
-
-  routingTable.addNextHop(dst, hop);
-}

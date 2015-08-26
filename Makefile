@@ -19,7 +19,7 @@ build:
 	mkdir $(BUILD_DIR)
 
 $(BUILD_DIR)/%.o: $(SRC_DIR)/%.cpp $(HEADERS)
-	$(CC) -c $< $(CFLAGS) -o $@
+	$(CC) -c -g $< $(CFLAGS) -o $@
 
 $(BIN_DIR)/hr-calc-path: $(OBJECTS)
 	$(CC) $^ $(CFLAGS) -o $(BIN_DIR)/hr-calc-path
