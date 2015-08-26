@@ -5,6 +5,7 @@
 
 #include "command-prompt.hpp"
 
+#include "path.hpp"
 #include "path-calculator.hpp"
 #include "topology.hpp"
 
@@ -16,9 +17,16 @@ CommandPrompt::CommandPrompt(const Topology& topo)
   , m_isRunning(true)
 {
   // Calculate all paths
-  m_commands["c"] = std::bind(&CommandPrompt::calculatePaths, this);
-  m_commands["calc"] = std::bind(&CommandPrompt::calculatePaths, this);
-  m_commands["calculate"] = std::bind(&CommandPrompt::calculatePaths, this);
+  m_commands["p"] = std::bind(&CommandPrompt::calculatePaths, this);
+  m_commands["path"] = std::bind(&CommandPrompt::calculatePaths, this);
+
+  // Get stretch
+  m_commands["s"] = std::bind(&CommandPrompt::getStretch, this);
+  m_commands["stretch"] = std::bind(&CommandPrompt::getStretch, this);
+
+  // Get node pairs that should timeout
+  m_commands["t"] = std::bind(&CommandPrompt::getTimeouts, this);
+  m_commands["timeout"] = std::bind(&CommandPrompt::getTimeouts, this);
 
   // Quit
   m_commands["exit"] = std::bind(&CommandPrompt::quit, this);
@@ -79,7 +87,11 @@ CommandPrompt::calculatePaths()
         const Node& dst = dstPair.second;
 
         if (src.getName() != dst.getName()) {
-          std::cout << calculator.getPath(m_topo, src, dst) << std::endl;
+          Path hr = calculator.getHyperbolicPath(m_topo, src, dst);
+          std::cout << "HR: " << hr.toString() << std::endl;
+
+          Path ls = calculator.getLinkStatePath(m_topo, src, dst);
+          std::cout << "LS: " << ls.toString() << std::endl;
         }
       }
     }
@@ -97,10 +109,144 @@ CommandPrompt::calculatePaths()
       return;
     }
 
-    std::cout << calculator.getPath(m_topo, *src, *dst) << std::endl;
+    Path hr = calculator.getHyperbolicPath(m_topo, *src, *dst);
+    std::cout << "HR: " << hr.toString() << std::endl;
+
+    Path ls = calculator.getLinkStatePath(m_topo, *src, *dst);
+    std::cout << "LS: " << ls.toString() << std::endl;
   }
   else {
-    std::cout << "Usage: calculate [src dst]" << std::endl;
+    std::cout << "Usage: path [src dst]" << std::endl;
+  }
+}
+
+std::string
+computeStretch(const Path& hr, const Path& ls)
+{
+  if (hr.getRtt() == Path::INFINITE_RTT && ls.getRtt() != Path::INFINITE_RTT) {
+    return "infinity";
+  }
+  else if (hr.getRtt() != Path::INFINITE_RTT && ls.getRtt() == Path::INFINITE_RTT) {
+    return "-infinity";
+  }
+  else {
+    return std::to_string(hr.getRtt()/ls.getRtt());
+  }
+}
+
+void
+CommandPrompt::getStretch()
+{
+  PathCalculator calculator;
+
+  if (m_args.size() == 0) {
+    for (const auto& srcPair : m_topo.getNodes()) {
+      const Node& src = srcPair.second;
+
+      for (const auto& dstPair : m_topo.getNodes()) {
+        const Node& dst = dstPair.second;
+
+        if (src.getName() != dst.getName()) {
+          Path hr = calculator.getHyperbolicPath(m_topo, src, dst);
+          Path ls = calculator.getLinkStatePath(m_topo, src, dst);
+          std::cout << "stretch(" << src.getName() << ", " << dst.getName()
+                    << ") = " << computeStretch(hr, ls) << std::endl;
+        }
+      }
+    }
+  }
+  else if (m_args.size() == 2) {
+    const Node* src = m_topo.getNode(m_args[0]);
+    const Node* dst = m_topo.getNode(m_args[1]);
+
+    if (src == nullptr) {
+      std::cout << "ERROR: Unknown node '" << m_args[0] << "'" << std::endl;
+      return;
+    }
+    else if (dst == nullptr) {
+      std::cout << "ERROR: Unknown node '" << m_args[1] << "'" << std::endl;
+      return;
+    }
+
+    Path hr = calculator.getHyperbolicPath(m_topo, *src, *dst);
+    Path ls = calculator.getLinkStatePath(m_topo, *src, *dst);
+    std::cout << "stretch(" << src->getName() << ", " << dst->getName()
+              << ") = " << computeStretch(hr, ls) << std::endl;
+  }
+  else {
+    std::cout << "Usage: stretch [src dst]" << std::endl;
+  }
+}
+
+void
+CommandPrompt::getTimeouts()
+{
+  PathCalculator calculator;
+  int nTimeouts = 0;
+
+  if (m_args.size() == 0) {
+    for (const auto& srcPair : m_topo.getNodes()) {
+      const Node& src = srcPair.second;
+
+      for (const auto& dstPair : m_topo.getNodes()) {
+        const Node& dst = dstPair.second;
+
+        if (src.getName() != dst.getName()) {
+          Path hr = calculator.getHyperbolicPath(m_topo, src, dst);
+
+          if (hr.getError() != Path::ERROR_NONE) {
+            std::cout << src.getName() << " to " << dst.getName()
+                      << " should timeout in HR" << std::endl;
+            ++nTimeouts;
+          }
+
+          Path ls = calculator.getLinkStatePath(m_topo, src, dst);
+
+          if (ls.getError() != Path::ERROR_NONE) {
+            std::cout << src.getName() << " to " << dst.getName()
+                      << " should timeout in LS" << std::endl;
+            ++nTimeouts;
+          }
+        }
+      }
+    }
+  }
+  else if (m_args.size() == 2) {
+    const Node* src = m_topo.getNode(m_args[0]);
+    const Node* dst = m_topo.getNode(m_args[1]);
+
+    if (src == nullptr) {
+      std::cout << "ERROR: Unknown node '" << m_args[0] << "'" << std::endl;
+      return;
+    }
+    else if (dst == nullptr) {
+      std::cout << "ERROR: Unknown node '" << m_args[1] << "'" << std::endl;
+      return;
+    }
+
+    Path hr = calculator.getHyperbolicPath(m_topo, *src, *dst);
+
+    if (hr.getError() != Path::ERROR_NONE) {
+      std::cout << src->getName() << " to " << dst->getName()
+                << " should timeout in HR" << std::endl;
+      ++nTimeouts;
+    }
+
+    Path ls = calculator.getLinkStatePath(m_topo, *src, *dst);
+
+    if (ls.getError() != Path::ERROR_NONE) {
+      std::cout << src->getName() << " to " << dst->getName()
+                << " should timeout in LS" << std::endl;
+      ++nTimeouts;
+    }
+  }
+  else {
+    std::cout << "Usage: stretch [src dst]" << std::endl;
+    return;
+  }
+
+  if (nTimeouts == 0) {
+    std::cout << "No timeouts expected" << std::endl;
   }
 }
 

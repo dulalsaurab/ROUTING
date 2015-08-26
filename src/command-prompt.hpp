@@ -26,6 +26,12 @@ private:
   calculatePaths();
 
   void
+  getStretch();
+
+  void
+  getTimeouts();
+
+  void
   quit();
 
 private:

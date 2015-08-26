@@ -6,47 +6,30 @@
 #include "path-calculator.hpp"
 
 #include "node.hpp"
+#include "path.hpp"
 #include "routing-table.hpp"
 #include "topology.hpp"
 
 #include <iostream>
 
-const double PathCalculator::INFINITE_RTT = -1.0;
+const double Path::INFINITE_RTT = -1.0;
 
-std::string
-PathCalculator::getPath(const Topology& topo, const Node& src, const Node& dst)
+Path
+PathCalculator::getHyperbolicPath(const Topology& topo, const Node& src, const Node& dst)
 {
-  std::cout << "Calculating path from " << src.getName() << " to " << dst.getName() << std::endl;
-
-  PathAndRttPair hr = getPath(topo, src, dst, true);
-  PathAndRttPair ls = getPath(topo, src, dst, false);
-
-  std::string output;
-  output += "HR: " + hr.path;
-
-  if (hr.rtt != INFINITE_RTT) {
-    output += " (RTT: " + std::to_string(int(hr.rtt)) + ")";
-  }
-
-  output += "\n";
-
-  output += "LS: " + ls.path;
-
-  if (ls.rtt != INFINITE_RTT) {
-    output += " (RTT: " + std::to_string(int(ls.rtt)) + ")";
-  }
-
-  output += "\n";
-
-  output += "Stretch: " + getStretch(hr, ls) + "\n";
-
-  return output;
+  return getPath(topo, src, dst, true);
 }
 
-PathCalculator::PathAndRttPair
+Path
+PathCalculator::getLinkStatePath(const Topology& topo, const Node& src, const Node& dst)
+{
+  return getPath(topo, src, dst, false);
+}
+
+Path
 PathCalculator::getPath(const Topology& topo, const Node& src, const Node& dst, bool isHyperbolic)
 {
-  std::string path;
+  Path path;
   const Node* current = &src;
   const Node* inFace = &src;
   double rtt = 0;
@@ -55,21 +38,19 @@ PathCalculator::getPath(const Topology& topo, const Node& src, const Node& dst, 
 
   while (current != nullptr) {
 
+    path.addNode(current->getName());
+
     // Check for loop
     if (visitedNodes.count(current->getName()) > 0) {
-      path += current->getName() + " (LOOP!) ";
-      return PathAndRttPair{path, INFINITE_RTT};
-    }
-    else {
-      path += current->getName();
+      path.setError(Path::ERROR_LOOP);
+      return path;
     }
 
     // Arrived at destination?
     if (current->getName() == dst.getName()) {
-      return PathAndRttPair{path, 2*rtt};
+      path.setRtt(2*rtt);
+      return path;
     }
-
-    path += " -> ";
 
     visitedNodes.insert(current->getName());
 
@@ -95,24 +76,9 @@ PathCalculator::getPath(const Topology& topo, const Node& src, const Node& dst, 
       current = next;
     }
     else {
-      path += "No Nexthop";
-      return PathAndRttPair{path, INFINITE_RTT};
+      path.setError(Path::ERROR_NO_NEXTHOP);
+      return path;
     }
   }
-
-  return PathAndRttPair{path, INFINITE_RTT};
-}
-
-std::string
-PathCalculator::getStretch(const PathAndRttPair& hr, const PathAndRttPair& ls) const
-{
-  if (hr.rtt == INFINITE_RTT && ls.rtt != INFINITE_RTT) {
-    return "infinity";
-  }
-  else if (hr.rtt != INFINITE_RTT && ls.rtt == INFINITE_RTT) {
-    return "-infinity";
-  }
-  else {
-    return std::to_string(hr.rtt/ls.rtt);
-  }
+  throw std::runtime_error("PathCalculator::getPath did not return a path before exiting loop");
 }
