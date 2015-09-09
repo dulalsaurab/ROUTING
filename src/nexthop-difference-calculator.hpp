@@ -11,7 +11,7 @@
 class NextHopDifferenceCalculator
 {
 public:
-  static int
+  static double
   getDifference(const NextHopSet& lhs, const NextHopSet& rhs);
 };
 

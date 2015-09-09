@@ -142,7 +142,7 @@ CommandPrompt::getNextHopDifference()
           const NextHopSet& lsNextHops = src.getLinkStateRoutingTable().getNextHops(dst.getName());
           const NextHopSet& hrNextHops = src.getHyperbolicRoutingTable().getNextHops(dst.getName());
 
-          int difference = NextHopDifferenceCalculator::getDifference(lsNextHops, hrNextHops);
+          double difference = NextHopDifferenceCalculator::getDifference(lsNextHops, hrNextHops);
 
           std::cout << "nexthop-diff(" << src.getName() << ", " << dst.getName()
                     << ") = " << difference << std::endl;
@@ -151,7 +151,7 @@ CommandPrompt::getNextHopDifference()
     }
   }
   else if (m_args.size() == 2) {
-    /*
+
     const Node* src = m_topo.getNode(m_args[0]);
     const Node* dst = m_topo.getNode(m_args[1]);
 
@@ -164,10 +164,13 @@ CommandPrompt::getNextHopDifference()
       return;
     }
 
-    Path hr = calculator.getHyperbolicPath(m_topo, *src, *dst);
-    Path ls = calculator.getLinkStatePath(m_topo, *src, *dst);
-    std::cout << "stretch(" << src->getName() << ", " << dst->getName()
-              << ") = " << computeStretch(hr, ls) << std::endl;*/
+    const NextHopSet& lsNextHops = src->getLinkStateRoutingTable().getNextHops(dst->getName());
+    const NextHopSet& hrNextHops = src->getHyperbolicRoutingTable().getNextHops(dst->getName());
+
+    double difference = NextHopDifferenceCalculator::getDifference(lsNextHops, hrNextHops);
+
+    std::cout << "nexthop-diff(" << src->getName() << ", " << dst->getName()
+              << ") = " << difference << std::endl;
   }
   else {
     std::cout << "Usage: diff [src dst]" << std::endl;
