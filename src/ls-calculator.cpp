@@ -118,6 +118,32 @@ public:
     return vertices(m_graph);
   }
 
+  void
+  onlyUseThisLinkFromSource(const Vertex& src, const Link& link)
+  {
+    size_t side1 = getNodeId(link.getSrc());
+    size_t side2 = getNodeId(link.getDst());
+
+    for (int i = 0; i < m_nLinks; ++i) {
+      Edge& edge = m_edgeArray[i];
+
+      // If the edge is connected to the src node
+      if (edge.first == src || edge.second == src) {
+        // If the edge is the one to use
+        if ((edge.first == side1 && edge.second == side2) || (edge.first == side2 || edge.second == side1)) {
+          continue;
+        }
+        else {
+          // This graph should not use this edge
+          m_edgeArray[i] = Edge(0, 0);
+        }
+      }
+    }
+
+    // Reset graph
+    m_graph = AdjacencyList(m_edgeArray, m_edgeArray + m_nLinks, m_weights, m_nNodes);
+  }
+
 private:
   NodeMap m_nodeMap;
   NameMap m_nameMap;
@@ -174,56 +200,64 @@ private:
 void
 LinkStateRoutingCalculator::calculatePaths(Topology& topo, Node& thisNode)
 {
-  Graph graph(topo);
+  // Put all links connected to source node into linksFromSource
+  const std::list<Link>& links = topo.getLinks();
 
-  Vertex src = graph.getVertex(thisNode.getName());
-
-  DijkstraAlgorithm dijkstra(graph, src);
-  dijkstra.computeShortestPaths();
-
-  VertexIterator vi, vend;
-  size_t currentIndex = 0;
-  const size_t srcIndex = graph.getNodeId(thisNode.getName());
-
-  for (boost::tie(vi, vend) = graph.getVertexIterators(); vi != vend; ++vi) {
-    // Don't add nexthops to get to self
-    if (*vi == srcIndex) {
-      continue;
+  std::set<const Link*> linksFromSource;
+  for (const Link& link : links) {
+    if (link.getSrc() == thisNode.getName() || link.getDst() == thisNode.getName()) {
+      linksFromSource.insert(&link);
     }
+  }
 
-    currentIndex = *vi;
-    std::list<size_t> path;
+  // Compute shortest path using each link from the source node
+  for (const Link* link : linksFromSource) {
+    Graph graph(topo);
 
-    while (currentIndex != srcIndex) {
-      size_t predecessor = dijkstra.getPredecessor(currentIndex);
+    Vertex src = graph.getVertex(thisNode.getName());
+    graph.onlyUseThisLinkFromSource(src, *link);
 
-      if (predecessor != currentIndex) {
-        path.push_front(currentIndex);
+
+    DijkstraAlgorithm dijkstra(graph, src);
+    dijkstra.computeShortestPaths();
+
+    VertexIterator vi, vend;
+    size_t currentIndex = 0;
+    const size_t srcIndex = graph.getNodeId(thisNode.getName());
+
+    for (boost::tie(vi, vend) = graph.getVertexIterators(); vi != vend; ++vi) {
+      // Don't add nexthops to get to self
+      if (*vi == srcIndex) {
+        continue;
       }
-      else {
-        // No way to reach this node
-        break;
+
+      currentIndex = *vi;
+      std::list<size_t> path;
+
+      while (currentIndex != srcIndex) {
+        size_t predecessor = dijkstra.getPredecessor(currentIndex);
+
+        if (predecessor != currentIndex) {
+          path.push_front(currentIndex);
+        }
+        else {
+          // No way to reach this node
+          break;
+        }
+
+        currentIndex = predecessor;
       }
 
-      currentIndex = predecessor;
+      // No route
+      if (path.empty()) {
+        continue;
+      }
+
+      const std::string& adj = graph.getNodeName(path.front());
+      const std::string& dstRouterName = graph.getNodeName(*vi);
+      double cost = dijkstra.getDistance(*vi);
+
+      addNextHop(adj, dstRouterName, cost, thisNode.getLinkStateRoutingTable());
     }
-
-    // No route
-    if (path.empty()) {
-      continue;
-    }
-
-    const std::string& adj = graph.getNodeName(path.front());
-    const std::string& dstRouterName = graph.getNodeName(*vi);
-    double cost = dijkstra.getDistance(*vi);
-
-    addNextHop(adj, dstRouterName, cost, thisNode.getLinkStateRoutingTable());
-
-    //std::cout << thisNode.getName() << "->";
-
-    //for (size_t node : path) {
-    //  std::cout << graph.getNodeName(node) << "->";
-    //}
-    //std::cout << std::endl;
   }
 }
