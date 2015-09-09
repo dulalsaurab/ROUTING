@@ -11,6 +11,7 @@
 #include <map>
 #include <string>
 
+class Node;
 class Topology;
 
 class CommandPrompt
@@ -39,6 +40,12 @@ private:
 
   void
   quit();
+
+private:
+  typedef std::function<void(const Node&, const Node&)> NodePairCommand;
+
+  void
+  executeNodePairCommand(const NodePairCommand& command, const std::string& cmdName);
 
 private:
   const Topology& m_topo;
