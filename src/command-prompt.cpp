@@ -5,6 +5,7 @@
 
 #include "command-prompt.hpp"
 
+#include "nexthop-difference-calculator.hpp"
 #include "path.hpp"
 #include "path-calculator.hpp"
 #include "topology.hpp"
@@ -19,6 +20,10 @@ CommandPrompt::CommandPrompt(const Topology& topo)
   // Calculate all paths
   m_commands["p"] = std::bind(&CommandPrompt::calculatePaths, this);
   m_commands["path"] = std::bind(&CommandPrompt::calculatePaths, this);
+
+  // Get NextHop difference
+  m_commands["d"] = std::bind(&CommandPrompt::getNextHopDifference, this);
+  m_commands["diff"] = std::bind(&CommandPrompt::getNextHopDifference, this);
 
   // Get stretch
   m_commands["s"] = std::bind(&CommandPrompt::getStretch, this);
@@ -120,6 +125,52 @@ CommandPrompt::calculatePaths()
   }
   else {
     std::cout << "Usage: path [src dst]" << std::endl;
+  }
+}
+
+void
+CommandPrompt::getNextHopDifference()
+{
+  if (m_args.size() == 0) {
+    for (const auto& srcPair : m_topo.getNodes()) {
+      const Node& src = srcPair.second;
+
+      for (const auto& dstPair : m_topo.getNodes()) {
+        const Node& dst = dstPair.second;
+
+        if (src.getName() != dst.getName()) {
+          const NextHopSet& lsNextHops = src.getLinkStateRoutingTable().getNextHops(dst.getName());
+          const NextHopSet& hrNextHops = src.getHyperbolicRoutingTable().getNextHops(dst.getName());
+
+          int difference = NextHopDifferenceCalculator::getDifference(lsNextHops, hrNextHops);
+
+          std::cout << "nexthop-diff(" << src.getName() << ", " << dst.getName()
+                    << ") = " << difference << std::endl;
+        }
+      }
+    }
+  }
+  else if (m_args.size() == 2) {
+    /*
+    const Node* src = m_topo.getNode(m_args[0]);
+    const Node* dst = m_topo.getNode(m_args[1]);
+
+    if (src == nullptr) {
+      std::cout << "ERROR: Unknown node '" << m_args[0] << "'" << std::endl;
+      return;
+    }
+    else if (dst == nullptr) {
+      std::cout << "ERROR: Unknown node '" << m_args[1] << "'" << std::endl;
+      return;
+    }
+
+    Path hr = calculator.getHyperbolicPath(m_topo, *src, *dst);
+    Path ls = calculator.getLinkStatePath(m_topo, *src, *dst);
+    std::cout << "stretch(" << src->getName() << ", " << dst->getName()
+              << ") = " << computeStretch(hr, ls) << std::endl;*/
+  }
+  else {
+    std::cout << "Usage: diff [src dst]" << std::endl;
   }
 }
 

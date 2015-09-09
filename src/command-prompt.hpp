@@ -26,6 +26,9 @@ private:
   calculatePaths();
 
   void
+  getNextHopDifference();
+
+  void
   getStretch();
 
   void

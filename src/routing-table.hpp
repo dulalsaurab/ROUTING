@@ -6,6 +6,7 @@
 #ifndef ROUTING_TABLE_HPP
 #define ROUTING_TABLE_HPP
 
+#include <exception>
 #include <map>
 #include <set>
 #include <string>
@@ -37,6 +38,8 @@ public:
   const std::string face;
   const double cost;
 };
+
+typedef std::set<NextHop> NextHopSet;
 
 class RoutingTable
 {
@@ -79,8 +82,20 @@ public:
     }
   }
 
+  const NextHopSet&
+  getNextHops(const std::string& dst) const
+  {
+    std::map<std::string, NextHopSet>::const_iterator it = m_table.find(dst);
+
+    if (it != m_table.end()) {
+      return it->second;
+    }
+    else {
+      throw std::runtime_error("Tried to get NextHops for non-existent dst: " + dst);
+    }
+  }
+
 private:
-  typedef std::set<NextHop> NextHopSet;
   std::map<std::string, NextHopSet> m_table;
 };
 
