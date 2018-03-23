@@ -31,7 +31,7 @@ run_graphing_scrips(){
 
 }
 
-resultDir="hr_vs_ls_br"
+#resultDir="hr_vs_ls_br"
 
 #clean
 #minindn --faces 0 --experiment=pingall --nPings=5 --no-cli $path_to_conf_file --work-dir=/mnt/ramdisk/ --result-dir=$resultDir/ls
@@ -39,11 +39,56 @@ resultDir="hr_vs_ls_br"
 #minindn --faces 0 --routing hr --experiment=pingall --nPings=5 --no-cli $path_to_conf_file --work-dir=/mnt/ramdisk/ --result-dir=$resultDir/
 #clean
 
-create_sym_link $resultDir
+#create_sym_link $resultDir
+#run_graphing_scrips $resultDir
+#mkdir -p $root_path/automate_experiments/results/$resultDir && cp $root_path/automate_experiments/hrls/* $_
 
-run_graphing_scrips $resultDir
 
-# mkdir -p $root_path/automate_experiments/results/0/ && cp $root_path/automate_experiments/hrls/*
+#resultDir1="hr_vs_ls_asf_2"
+
+#clean
+#minindn --faces 2 --experiment=pingall --nPings=5 --no-cli $path_to_conf_file --work-dir=/mnt/ramdisk/ --result-dir=$resultDir1/ls
+#clean
+#minindn --faces 2 --routing hr --experiment=asf-exp --nPings=5 --no-cli $path_to_conf_file --work-dir=/mnt/ramdisk/ --result-dir=$resultDir1/
+#clean
+
+#create_sym_link $resultDir1
+#run_graphing_scrips $resultDir1
+#mkdir -p $root_path/automate_experiments/results/$resultDir1 && cp $root_path/automate_experiments/hrls/* $_
+
+
+resultDir2="hr_vs_ls_asf_4"
+
+clean
+minindn --faces 4 --experiment=pingall --nPings=5 --no-cli $path_to_conf_file --work-dir=/mnt/ramdisk/ --result-dir=$resultDir2/ls
+clean
+minindn --faces 4 --routing hr --experiment=asf-exp --nPings=5 --no-cli $path_to_conf_file --work-dir=/mnt/ramdisk/ --result-dir=$resultDir2/
+clean
+
+create_sym_link $resultDir2
+run_graphing_scrips $resultDir2
+mkdir -p $root_path/automate_experiments/results/$resultDir2 && cp $root_path/automate_experiments/hrls/* $_
+
+
+resultDir3="hr_vs_ls_asf_all"
+
+clean
+minindn --faces 0 --experiment=pingall --nPings=5 --no-cli $path_to_conf_file --work-dir=/mnt/ramdisk/ --result-dir=$resultDir3/ls
+clean
+minindn --faces 0 --routing hr --experiment=asf-exp --nPings=5 --no-cli $path_to_conf_file --work-dir=/mnt/ramdisk/ --result-dir=$resultDir3/
+clean
+
+create_sym_link $resultDir3
+run_graphing_scrips $resultDir3
+mkdir -p $root_path/automate_experiments/results/$resultDir3 && cp $root_path/automate_experiments/hrls/* $_
+
+
+
+
+
+
+
+
 
 
 #clean

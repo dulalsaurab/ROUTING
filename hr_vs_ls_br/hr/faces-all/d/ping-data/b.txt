@@ -1,10 +1,10 @@
 PING /ndn/b-site/b
-20180323T013636.360090 - content from /ndn/b-site/b: seq=6346451608116825482 time=95.7693 ms
-20180323T013637.355478 - content from /ndn/b-site/b: seq=6346451608116825483 time=91.0611 ms
-20180323T013638.355626 - content from /ndn/b-site/b: seq=6346451608116825484 time=91.0722 ms
-20180323T013639.355841 - content from /ndn/b-site/b: seq=6346451608116825485 time=91.1486 ms
-20180323T013640.355885 - content from /ndn/b-site/b: seq=6346451608116825486 time=91.0509 ms
+20180323T031553.042533 - content from /ndn/b-site/b: seq=9677617387015504018 time=95.7608 ms
+20180323T031554.037971 - content from /ndn/b-site/b: seq=9677617387015504019 time=91.1084 ms
+20180323T031555.038172 - content from /ndn/b-site/b: seq=9677617387015504020 time=91.1792 ms
+20180323T031556.038213 - content from /ndn/b-site/b: seq=9677617387015504021 time=91.0806 ms
+20180323T031557.038349 - content from /ndn/b-site/b: seq=9677617387015504022 time=91.0759 ms
 
 --- /ndn/b-site/b ping statistics ---
-5 packets transmitted, 5 received, 0 nacked, 0% lost, 0% nacked, time 460.102 ms
-rtt min/avg/max/mdev = 91.0509/92.0204/95.7693/1.87476 ms
+5 packets transmitted, 5 received, 0 nacked, 0% lost, 0% nacked, time 460.205 ms
+rtt min/avg/max/mdev = 91.0759/92.041/95.7608/1.86029 ms

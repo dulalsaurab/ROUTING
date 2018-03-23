@@ -1,0 +1,4 @@
+PING /ndn/b-site/b
+20180323T035120.017722 - content from /ndn/b-site/b: seq=63776332535809446 time=43.786 ms
+20180323T035121.013243 - content from /ndn/b-site/b: seq=63776332535809447 time=39.2038 ms
+20180323T035122.013344 - content from /ndn/b-site/b: seq=63776332535809448 time=39.1555 ms

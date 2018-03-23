@@ -1,0 +1,2 @@
+PING /ndn/c-site/c
+20180323T035122.374978 - content from /ndn/c-site/c: seq=7752282188272040555 time=188.485 ms

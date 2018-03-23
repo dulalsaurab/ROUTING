@@ -1,0 +1,4 @@
+PING /ndn/c-site/c
+20180323T035120.235425 - content from /ndn/c-site/c: seq=2385699083559210712 time=60.0619 ms
+20180323T035121.230601 - content from /ndn/c-site/c: seq=2385699083559210713 time=55.1388 ms
+20180323T035122.230861 - content from /ndn/c-site/c: seq=2385699083559210714 time=55.2511 ms

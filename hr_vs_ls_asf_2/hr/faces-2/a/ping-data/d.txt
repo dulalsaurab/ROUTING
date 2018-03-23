@@ -1,0 +1,3 @@
+PING /ndn/d-site/d
+20180323T035120.510764 - content from /ndn/d-site/d: seq=12339888315994964787 time=134.198 ms
+20180323T035121.506269 - content from /ndn/d-site/d: seq=12339888315994964788 time=129.563 ms

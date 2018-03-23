@@ -1,0 +1,320 @@
+1521776924.459978 INFO: [Main] NFD version 0.6.1-15-g3cf75dc starting
+1521776924.460012 INFO: [Main] Built with GNU C++ version 4.9.4, with GNU libstdc++ version 20160726, with Boost version 1.55.0, with libpcap version 1.5.3, without WebSocket++, with ndn-cxx version 0.6.1-commit-92e4d5c
+1521776924.485076 INFO: [RibManager] Start monitoring face create/destroy events
+1521776924.503145 DEBUG: [RibManager] Successfully registered /localhost/nfd with NFD
+1521776924.503281 TRACE: [RibManager] onNotification: FaceEvent(Kind: created,
+          FaceId: 256,
+          RemoteUri: fd://20,
+          LocalUri: unix:///run/c.sock,
+          FaceScope: local,
+          FacePersistency: on-demand,
+          LinkType: point-to-point,
+          Flags: 0x4
+          )
+1521776924.503456 DEBUG: [RibManager] Local fields enabled
+1521776927.411358 TRACE: [RibManager] onNotification: FaceEvent(Kind: created,
+          FaceId: 257,
+          RemoteUri: fd://21,
+          LocalUri: unix:///run/c.sock,
+          FaceScope: local,
+          FacePersistency: on-demand,
+          LinkType: point-to-point,
+          Flags: 0x4
+          )
+1521776927.419965 TRACE: [RibManager] onNotification: FaceEvent(Kind: created,
+          FaceId: 258,
+          RemoteUri: udp4://1.0.0.5:6363,
+          LocalUri: udp4://1.0.0.6:6363,
+          FaceScope: non-local,
+          FacePersistency: permanent,
+          LinkType: point-to-point,
+          Flags: 0x4
+          )
+1521776927.423924 TRACE: [RibManager] onNotification: FaceEvent(Kind: destroyed,
+          FaceId: 257,
+          RemoteUri: fd://21,
+          LocalUri: unix:///run/c.sock,
+          FaceScope: local,
+          FacePersistency: on-demand,
+          LinkType: point-to-point,
+          Flags: 0x4
+          )
+1521776927.423946 DEBUG: [RibManager] Received notification for destroyed faceId: 257
+1521776927.491512 TRACE: [RibManager] onNotification: FaceEvent(Kind: created,
+          FaceId: 259,
+          RemoteUri: fd://21,
+          LocalUri: unix:///run/c.sock,
+          FaceScope: local,
+          FacePersistency: on-demand,
+          LinkType: point-to-point,
+          Flags: 0x4
+          )
+1521776927.496785 INFO: [RibManager] Adding route /localhop/ndn/NLSR/sync/%FD%04 nexthop=259 origin=app cost=0
+1521776927.509494 INFO: [RibManager] Adding route /localhop/ndn/NLSR/LSA/c-site/%C1.Router/cs/c/NAME nexthop=259 origin=app cost=0
+1521776927.512629 INFO: [RibManager] Adding route /localhop/ndn/NLSR/LSA/c-site/%C1.Router/cs/c/ADJACENCY nexthop=259 origin=app cost=0
+1521776927.515441 INFO: [RibManager] Adding route /ndn/c-site/%C1.Router/cs/c/NLSR/INFO nexthop=259 origin=app cost=0
+1521776927.518242 INFO: [RibManager] Adding route /localhop/ndn/NLSR/LSA nexthop=259 origin=app cost=0
+1521776927.521173 INFO: [RibManager] Adding route /ndn/c-site/%C1.Router/cs/c/NLSR/KEY nexthop=259 origin=app cost=0
+1521776927.523940 INFO: [RibManager] Adding route /ndn/c-site/%C1.Router/cs/c/KEY nexthop=259 origin=app cost=0
+1521776927.526740 INFO: [RibManager] Adding route /ndn/c-site/%C1.Operator nexthop=259 origin=app cost=0
+1521776927.529517 INFO: [RibManager] Adding route /ndn/c-site/KEY nexthop=259 origin=app cost=0
+1521776927.532308 INFO: [RibManager] Adding route /localhost/nlsr nexthop=259 origin=app cost=0
+1521776927.532467 DEBUG: [RibManager] RIB update succeeded for RibUpdate {
+  Name: /localhop/ndn/NLSR/sync/%FD%04
+  Action: REGISTER
+  Route(faceid: 259, origin: app, cost: 0, flags: 0x1, never expires)
+}
+1521776927.537734 INFO: [RibManager] Adding route /ndn/a-site/%C1.Router/cs/a nexthop=258 origin=nlsr cost=27
+1521776927.540318 INFO: [RibManager] Adding route /localhop/ndn/NLSR/sync/%FD%04 nexthop=258 origin=nlsr cost=27
+1521776927.542909 INFO: [RibManager] Adding route /localhop/ndn/NLSR/LSA nexthop=258 origin=nlsr cost=27
+1521776927.547766 DEBUG: [RibManager] RIB update succeeded for RibUpdate {
+  Name: /localhop/ndn/NLSR/LSA/c-site/%C1.Router/cs/c/NAME
+  Action: REGISTER
+  Route(faceid: 259, origin: app, cost: 0, flags: 0x1, never expires)
+}
+1521776927.554880 DEBUG: [RibManager] RIB update succeeded for RibUpdate {
+  Name: /localhop/ndn/NLSR/LSA/c-site/%C1.Router/cs/c/ADJACENCY
+  Action: REGISTER
+  Route(faceid: 259, origin: app, cost: 0, flags: 0x1, never expires)
+}
+1521776927.561821 DEBUG: [RibManager] RIB update succeeded for RibUpdate {
+  Name: /ndn/c-site/%C1.Router/cs/c/NLSR/INFO
+  Action: REGISTER
+  Route(faceid: 259, origin: app, cost: 0, flags: 0x2, never expires)
+}
+1521776927.568484 DEBUG: [RibManager] RIB update succeeded for RibUpdate {
+  Name: /localhop/ndn/NLSR/LSA
+  Action: REGISTER
+  Route(faceid: 259, origin: app, cost: 0, flags: 0x2, never expires)
+}
+1521776927.575005 DEBUG: [RibManager] RIB update succeeded for RibUpdate {
+  Name: /ndn/c-site/%C1.Router/cs/c/NLSR/KEY
+  Action: REGISTER
+  Route(faceid: 259, origin: app, cost: 0, flags: 0x2, never expires)
+}
+1521776927.581414 DEBUG: [RibManager] RIB update succeeded for RibUpdate {
+  Name: /ndn/c-site/%C1.Router/cs/c/KEY
+  Action: REGISTER
+  Route(faceid: 259, origin: app, cost: 0, flags: 0x2, never expires)
+}
+1521776927.587595 DEBUG: [RibManager] RIB update succeeded for RibUpdate {
+  Name: /ndn/c-site/%C1.Operator
+  Action: REGISTER
+  Route(faceid: 259, origin: app, cost: 0, flags: 0x2, never expires)
+}
+1521776927.593764 DEBUG: [RibManager] RIB update succeeded for RibUpdate {
+  Name: /ndn/c-site/KEY
+  Action: REGISTER
+  Route(faceid: 259, origin: app, cost: 0, flags: 0x2, never expires)
+}
+1521776927.599666 DEBUG: [RibManager] RIB update succeeded for RibUpdate {
+  Name: /localhost/nlsr
+  Action: REGISTER
+  Route(faceid: 259, origin: app, cost: 0, flags: 0x1, never expires)
+}
+1521776927.605534 DEBUG: [RibManager] RIB update succeeded for RibUpdate {
+  Name: /ndn/a-site/%C1.Router/cs/a
+  Action: REGISTER
+  Route(faceid: 258, origin: nlsr, cost: 27, flags: 0x2, never expires)
+}
+1521776927.611159 DEBUG: [RibManager] RIB update succeeded for RibUpdate {
+  Name: /localhop/ndn/NLSR/sync/%FD%04
+  Action: REGISTER
+  Route(faceid: 258, origin: nlsr, cost: 27, flags: 0x2, never expires)
+}
+1521776927.616701 DEBUG: [RibManager] RIB update succeeded for RibUpdate {
+  Name: /localhop/ndn/NLSR/LSA
+  Action: REGISTER
+  Route(faceid: 258, origin: nlsr, cost: 27, flags: 0x2, never expires)
+}
+1521776930.665431 TRACE: [RibManager] onNotification: FaceEvent(Kind: created,
+          FaceId: 260,
+          RemoteUri: fd://23,
+          LocalUri: unix:///run/c.sock,
+          FaceScope: local,
+          FacePersistency: on-demand,
+          LinkType: point-to-point,
+          Flags: 0x4
+          )
+1521776930.673890 TRACE: [RibManager] onNotification: FaceEvent(Kind: destroyed,
+          FaceId: 260,
+          RemoteUri: fd://23,
+          LocalUri: unix:///run/c.sock,
+          FaceScope: local,
+          FacePersistency: on-demand,
+          LinkType: point-to-point,
+          Flags: 0x4
+          )
+1521776930.673918 DEBUG: [RibManager] Received notification for destroyed faceId: 260
+1521776931.197404 TRACE: [RibManager] onNotification: FaceEvent(Kind: created,
+          FaceId: 261,
+          RemoteUri: fd://23,
+          LocalUri: unix:///run/c.sock,
+          FaceScope: local,
+          FacePersistency: on-demand,
+          LinkType: point-to-point,
+          Flags: 0x4
+          )
+1521776931.201803 INFO: [RibManager] Adding route /ndn/c-site/c/ping nexthop=261 origin=app cost=0
+1521776931.210255 DEBUG: [RibManager] RIB update succeeded for RibUpdate {
+  Name: /ndn/c-site/c/ping
+  Action: REGISTER
+  Route(faceid: 261, origin: app, cost: 0, flags: 0x1, never expires)
+}
+1521776931.676137 TRACE: [RibManager] onNotification: FaceEvent(Kind: created,
+          FaceId: 262,
+          RemoteUri: ether://[01:00:5e:00:17:aa],
+          LocalUri: dev://c-eth0,
+          FaceScope: non-local,
+          FacePersistency: permanent,
+          LinkType: multi-access,
+          Flags: 0x0
+          )
+1521776931.676710 TRACE: [RibManager] onNotification: FaceEvent(Kind: created,
+          FaceId: 263,
+          RemoteUri: udp4://224.0.23.170:56363,
+          LocalUri: udp4://1.0.0.6:49142,
+          FaceScope: non-local,
+          FacePersistency: permanent,
+          LinkType: multi-access,
+          Flags: 0x4
+          )
+1521776931.677283 TRACE: [RibManager] onNotification: FaceEvent(Kind: created,
+          FaceId: 264,
+          RemoteUri: udp6://[ff02::1234%2]:56363,
+          LocalUri: udp6://[fe80::9409:76ff:fe9c:c698%c-eth0]:58744,
+          FaceScope: non-local,
+          FacePersistency: permanent,
+          LinkType: multi-access,
+          Flags: 0x4
+          )
+1521776970.904088 TRACE: [RibManager] Scheduled unregistration at: 4337181575721541 nanoseconds since boot with EventId: 0x7fa7740490a0
+1521776970.904159 INFO: [RibManager] Adding route /ndn/d-site/d nexthop=258 origin=nlsr cost=91
+1521776970.911482 DEBUG: [RibManager] RIB update succeeded for RibUpdate {
+  Name: /ndn/d-site/d
+  Action: REGISTER
+  Route(faceid: 258, origin: nlsr, cost: 91, flags: 0x2, expires in: 3609992 milliseconds)
+}
+1521776970.918139 TRACE: [RibManager] Scheduled unregistration at: 4337181589774652 nanoseconds since boot with EventId: 0x7fa7740463e0
+1521776970.918169 INFO: [RibManager] Adding route /ndn/d-site/%C1.Router/cs/d nexthop=258 origin=nlsr cost=91
+1521776970.924407 TRACE: [RibManager] Scheduled unregistration at: 4337181596035714 nanoseconds since boot with EventId: 0x7fa77403c720
+1521776970.924434 INFO: [RibManager] Adding route /ndn/b-site/b nexthop=258 origin=nlsr cost=46
+1521776970.928772 TRACE: [RibManager] Scheduled unregistration at: 4337181600401019 nanoseconds since boot with EventId: 0x7fa77402b3f0
+1521776970.928824 INFO: [RibManager] Adding route /ndn/b-site/%C1.Router/cs/b nexthop=258 origin=nlsr cost=46
+1521776970.932971 TRACE: [RibManager] Scheduled unregistration at: 4337181604608264 nanoseconds since boot with EventId: 0x7fa77405f310
+1521776970.933009 INFO: [RibManager] Adding route /ndn/a-site/a nexthop=258 origin=nlsr cost=27
+1521776970.933263 DEBUG: [RibManager] RIB update succeeded for RibUpdate {
+  Name: /ndn/d-site/%C1.Router/cs/d
+  Action: REGISTER
+  Route(faceid: 258, origin: nlsr, cost: 91, flags: 0x2, expires in: 3609984 milliseconds)
+}
+1521776970.940806 DEBUG: [RibManager] RIB update succeeded for RibUpdate {
+  Name: /ndn/b-site/b
+  Action: REGISTER
+  Route(faceid: 258, origin: nlsr, cost: 46, flags: 0x2, expires in: 3609983 milliseconds)
+}
+1521776970.948106 DEBUG: [RibManager] RIB update succeeded for RibUpdate {
+  Name: /ndn/b-site/%C1.Router/cs/b
+  Action: REGISTER
+  Route(faceid: 258, origin: nlsr, cost: 46, flags: 0x2, expires in: 3609980 milliseconds)
+}
+1521776970.955127 DEBUG: [RibManager] RIB update succeeded for RibUpdate {
+  Name: /ndn/a-site/a
+  Action: REGISTER
+  Route(faceid: 258, origin: nlsr, cost: 27, flags: 0x2, expires in: 3609977 milliseconds)
+}
+1521776991.892012 TRACE: [RibManager] onNotification: FaceEvent(Kind: created,
+          FaceId: 265,
+          RemoteUri: fd://24,
+          LocalUri: unix:///run/c.sock,
+          FaceScope: local,
+          FacePersistency: on-demand,
+          LinkType: point-to-point,
+          Flags: 0x4
+          )
+1521776991.901512 TRACE: [RibManager] onNotification: FaceEvent(Kind: destroyed,
+          FaceId: 265,
+          RemoteUri: fd://24,
+          LocalUri: unix:///run/c.sock,
+          FaceScope: local,
+          FacePersistency: on-demand,
+          LinkType: point-to-point,
+          Flags: 0x4
+          )
+1521776991.901554 DEBUG: [RibManager] Received notification for destroyed faceId: 265
+1521776991.918177 TRACE: [RibManager] onNotification: FaceEvent(Kind: created,
+          FaceId: 266,
+          RemoteUri: fd://24,
+          LocalUri: unix:///run/c.sock,
+          FaceScope: local,
+          FacePersistency: on-demand,
+          LinkType: point-to-point,
+          Flags: 0x4
+          )
+1521776991.922813 TRACE: [RibManager] onNotification: FaceEvent(Kind: destroyed,
+          FaceId: 266,
+          RemoteUri: fd://24,
+          LocalUri: unix:///run/c.sock,
+          FaceScope: local,
+          FacePersistency: on-demand,
+          LinkType: point-to-point,
+          Flags: 0x4
+          )
+1521776991.922844 DEBUG: [RibManager] Received notification for destroyed faceId: 266
+1521776993.196207 TRACE: [RibManager] onNotification: FaceEvent(Kind: created,
+          FaceId: 267,
+          RemoteUri: fd://24,
+          LocalUri: unix:///run/c.sock,
+          FaceScope: local,
+          FacePersistency: on-demand,
+          LinkType: point-to-point,
+          Flags: 0x4
+          )
+1521776993.397463 TRACE: [RibManager] onNotification: FaceEvent(Kind: created,
+          FaceId: 268,
+          RemoteUri: fd://33,
+          LocalUri: unix:///run/c.sock,
+          FaceScope: local,
+          FacePersistency: on-demand,
+          LinkType: point-to-point,
+          Flags: 0x4
+          )
+1521776993.598397 TRACE: [RibManager] onNotification: FaceEvent(Kind: created,
+          FaceId: 269,
+          RemoteUri: fd://34,
+          LocalUri: unix:///run/c.sock,
+          FaceScope: local,
+          FacePersistency: on-demand,
+          LinkType: point-to-point,
+          Flags: 0x4
+          )
+1521776997.380174 TRACE: [RibManager] onNotification: FaceEvent(Kind: destroyed,
+          FaceId: 267,
+          RemoteUri: fd://24,
+          LocalUri: unix:///run/c.sock,
+          FaceScope: local,
+          FacePersistency: on-demand,
+          LinkType: point-to-point,
+          Flags: 0x4
+          )
+1521776997.380204 DEBUG: [RibManager] Received notification for destroyed faceId: 267
+1521776997.452856 TRACE: [RibManager] onNotification: FaceEvent(Kind: destroyed,
+          FaceId: 268,
+          RemoteUri: fd://33,
+          LocalUri: unix:///run/c.sock,
+          FaceScope: local,
+          FacePersistency: on-demand,
+          LinkType: point-to-point,
+          Flags: 0x4
+          )
+1521776997.452885 DEBUG: [RibManager] Received notification for destroyed faceId: 268
+1521776997.692149 TRACE: [RibManager] onNotification: FaceEvent(Kind: destroyed,
+          FaceId: 269,
+          RemoteUri: fd://34,
+          LocalUri: unix:///run/c.sock,
+          FaceScope: local,
+          FacePersistency: on-demand,
+          LinkType: point-to-point,
+          Flags: 0x4
+          )
+1521776997.692178 DEBUG: [RibManager] Received notification for destroyed faceId: 269

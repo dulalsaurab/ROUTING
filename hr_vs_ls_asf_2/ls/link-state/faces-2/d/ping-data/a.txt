@@ -1,0 +1,10 @@
+PING /ndn/a-site/a
+20180323T034953.928859 - content from /ndn/a-site/a: seq=14220271038048177935 time=134.138 ms
+20180323T034954.924251 - content from /ndn/a-site/a: seq=14220271038048177936 time=129.433 ms
+20180323T034955.924413 - content from /ndn/a-site/a: seq=14220271038048177937 time=129.459 ms
+20180323T034956.924566 - content from /ndn/a-site/a: seq=14220271038048177938 time=129.477 ms
+20180323T034957.924680 - content from /ndn/a-site/a: seq=14220271038048177939 time=129.456 ms
+
+--- /ndn/a-site/a ping statistics ---
+5 packets transmitted, 5 received, 0 nacked, 0% lost, 0% nacked, time 651.962 ms
+rtt min/avg/max/mdev = 129.433/130.392/134.138/1.87272 ms
