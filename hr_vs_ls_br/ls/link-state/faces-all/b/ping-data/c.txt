@@ -1,0 +1,10 @@
+PING /ndn/c-site/c
+20180323T013507.145504 - content from /ndn/c-site/c: seq=14487753782569648395 time=98.1159 ms
+20180323T013508.141055 - content from /ndn/c-site/c: seq=14487753782569648396 time=93.5672 ms
+20180323T013509.141189 - content from /ndn/c-site/c: seq=14487753782569648397 time=93.5442 ms
+20180323T013510.141254 - content from /ndn/c-site/c: seq=14487753782569648398 time=93.4636 ms
+20180323T013511.141373 - content from /ndn/c-site/c: seq=14487753782569648399 time=93.4442 ms
+
+--- /ndn/c-site/c ping statistics ---
+5 packets transmitted, 5 received, 0 nacked, 0% lost, 0% nacked, time 472.135 ms
+rtt min/avg/max/mdev = 93.4442/94.427/98.1159/1.84503 ms

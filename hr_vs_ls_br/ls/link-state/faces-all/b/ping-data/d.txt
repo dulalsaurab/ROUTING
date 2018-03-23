@@ -1,0 +1,10 @@
+PING /ndn/d-site/d
+20180323T013507.343968 - content from /ndn/d-site/d: seq=9321046615858909213 time=95.7141 ms
+20180323T013508.339534 - content from /ndn/d-site/d: seq=9321046615858909214 time=91.1459 ms
+20180323T013509.339679 - content from /ndn/d-site/d: seq=9321046615858909215 time=91.1431 ms
+20180323T013510.339720 - content from /ndn/d-site/d: seq=9321046615858909216 time=91.0487 ms
+20180323T013511.339847 - content from /ndn/d-site/d: seq=9321046615858909217 time=91.0392 ms
+
+--- /ndn/d-site/d ping statistics ---
+5 packets transmitted, 5 received, 0 nacked, 0% lost, 0% nacked, time 460.091 ms
+rtt min/avg/max/mdev = 91.0392/92.0182/95.7141/1.84849 ms

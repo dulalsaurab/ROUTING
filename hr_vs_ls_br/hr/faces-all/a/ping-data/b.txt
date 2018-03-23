@@ -1,0 +1,10 @@
+PING /ndn/b-site/b
+20180323T013634.296458 - content from /ndn/b-site/b: seq=13933961593454793678 time=43.4639 ms
+20180323T013635.292248 - content from /ndn/b-site/b: seq=13933961593454793679 time=39.1445 ms
+20180323T013636.292429 - content from /ndn/b-site/b: seq=13933961593454793680 time=39.1535 ms
+20180323T013637.292511 - content from /ndn/b-site/b: seq=13933961593454793681 time=39.0895 ms
+20180323T013638.292617 - content from /ndn/b-site/b: seq=13933961593454793682 time=39.0581 ms
+
+--- /ndn/b-site/b ping statistics ---
+5 packets transmitted, 5 received, 0 nacked, 0% lost, 0% nacked, time 199.91 ms
+rtt min/avg/max/mdev = 39.0581/39.9819/43.4639/1.74134 ms
