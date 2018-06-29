@@ -1,2 +1,0 @@
-PING /ndn/a-site/a
-20180323T035121.918409 - content from /ndn/a-site/a: seq=14469398062175927623 time=134.159 ms

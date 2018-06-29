@@ -1,1 +1,0 @@
-Router's Identity /ndn/d-site/%C1.Router/cs/d does not exist. NLSR is running without security (Only for testing, should not be used in production.) If security is enabled NLSR will not converge.
