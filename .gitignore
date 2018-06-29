@@ -3,5 +3,5 @@
 
 # But not these files...
 !.gitignore
-!auto_exp_script.sh  
-!topologies_bkp/*
+!/scripts/
+!/topologies_bkp/

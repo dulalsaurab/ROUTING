@@ -1,0 +1,161 @@
+[nodes]
+afa: _ radius=10.3354428445 angle=1.12640207075
+anyang: _ radius=14.3378634978 angle=2.99956859362
+arizona: _ radius=16.2305391314 angle=2.97033285094
+basel: _ radius=13.2717666497 angle=2.41932
+bern: _ radius=13.2717666497 angle=2.41933
+bupt: _ radius=29.2553552716 angle=3.07635893011
+byu: _ radius=19.3538454318 angle=3.77334112453
+cagliari: _ radius=13.5903793307 angle=1.1393442623
+caida: _ radius=17.6030443241 angle=2.94302721088
+caruna: _ radius=13.6888312672 angle=1.17169974116
+cnic: _ radius=13.0513265591 angle=2.87446074202
+copelabs: _ radius=16.206035855 angle=2.62082
+csu: _ radius=14.1056931988 angle=2.99266609146
+goettingen: _ radius=12.2349274272 angle=2.4715271786
+indonesia: _ radius=29.2553552716 angle=2.75021570319
+kisti: _ radius=11.5531281288 angle=2.98403796376
+lip6: _ radius=29.2553552716 angle=2.62295081967
+memphis: _ radius=15.264773513 angle=2.98360655738
+michigan: _ radius=17.7738038607 angle=2.98018269082
+minho: _ radius=16.206035855 angle=2.62083
+msu: _ radius=19.6533436173 angle=3.64135462555
+mumbai_aws: _ radius=12.8934676597 angle=2.95081967213
+neu: _ radius=19.9001283692 angle=2.13894230769
+nist: _ radius=13.4257788269 angle=2.97670405522
+ntnu: _ radius=12.0281644432 angle=3.11561691113
+osaka: _ radius=19.3573834399 angle=3.53687143598
+padua: _ radius=13.5903793307 angle=1.1393442623
+pkusz: _ radius=11.1495655496 angle=2.87016
+remap: _ radius=16.5866430024 angle=2.99911
+srru: _ radius=12.8769009681 angle=3.63761863676
+systemx: _ radius=19.1697680538 angle=2.62274588692
+tno: _ radius=12.0148443703 angle=2.4603106126
+tongji: _ radius=11.1495655496 angle=2.87015
+uaslp: _ radius=19.0473935894 angle=2.96488127257
+uci: _ radius=19.2697694366 angle=2.94186046512
+ucla: _ radius=16.5866430024 angle=2.999107674
+ufpa: _ radius=29.2553552716 angle=3.51898188093
+uiuc: _ radius=29.2553552716 angle=2.98231233822
+urjc: _ radius=13.6888312672 angle=1.17169974116
+uum: _ radius=14.8351249127 angle=3.44434857636
+waseda: _ radius=19.3583257472 angle=2.99935233161
+wu: _ radius=19.4268485719 angle=4.31067173954
+[links]
+afa:mumbai_aws delay=100ms loss=10
+afa:bern delay=15ms loss=10
+afa:cagliari delay=25ms loss=10
+afa:padua delay=11ms loss=10
+afa:copelabs delay=36ms loss=10
+anyang:tongji delay=54ms loss=10
+anyang:srru delay=57ms loss=10
+anyang:msu delay=70ms loss=10
+anyang:bupt delay=33ms loss=10
+anyang:kisti delay=40ms loss=10
+anyang:waseda delay=40ms loss=10
+anyang:osaka delay=36ms loss=10
+arizona:caida delay=25ms loss=10
+arizona:remap delay=25ms loss=10
+arizona:waseda delay=75ms loss=10
+arizona:byu delay=30ms loss=10
+arizona:uaslp delay=100ms loss=10
+arizona:wu delay=33ms loss=10
+arizona:csu delay=18ms loss=10
+arizona:memphis delay=17ms loss=10
+basel:urjc delay=14ms loss=10
+basel:minho delay=23ms loss=10
+basel:ntnu delay=30ms loss=10
+basel:padua delay=9ms loss=10
+basel:lip6 delay=7ms loss=10
+basel:goettingen delay=10ms loss=10
+basel:bern delay=2ms loss=10
+basel:tno delay=14ms loss=10
+basel:systemx delay=9ms loss=10
+bern:lip6 delay=18ms loss=10
+bupt:pkusz delay=54ms loss=10
+bupt:waseda delay=48ms loss=10
+bupt:tongji delay=18ms loss=10
+bupt:srru delay=72ms loss=10
+bupt:indonesia delay=54ms loss=10
+bupt:kisti delay=33ms loss=10
+bupt:cnic delay=10ms loss=10
+byu:csu delay=8ms loss=10
+byu:remap delay=9ms loss=10
+cagliari:urjc delay=28ms loss=10
+cagliari:caruna delay=40ms loss=10
+cagliari:padua delay=25ms loss=10
+cagliari:wu delay=100ms loss=10
+caida:ufpa delay=155ms loss=10
+caida:ucla delay=3ms loss=10
+caida:uci delay=3ms loss=10
+caida:tongji delay=93ms loss=10
+caruna:urjc delay=17ms loss=10
+caruna:minho delay=27ms loss=10
+cnic:pkusz delay=20ms loss=10
+cnic:osaka delay=45ms loss=10
+copelabs:urjc delay=13ms loss=10
+copelabs:minho delay=4ms loss=10
+copelabs:padua delay=24ms loss=10
+copelabs:lip6 delay=22ms loss=10
+copelabs:ufpa delay=145ms loss=10
+csu:remap delay=16ms loss=10
+csu:kisti delay=106ms loss=10
+csu:michigan delay=15ms loss=10
+csu:ucla delay=16ms loss=10
+csu:uiuc delay=14ms loss=10
+goettingen:osaka delay=136ms loss=10
+goettingen:ntnu delay=40ms loss=10
+goettingen:padua delay=14ms loss=10
+goettingen:tno delay=12ms loss=10
+goettingen:systemx delay=10ms loss=10
+indonesia:waseda delay=49ms loss=10
+indonesia:tongji delay=61ms loss=10
+indonesia:srru delay=32ms loss=10
+indonesia:uum delay=100ms loss=10
+indonesia:kisti delay=150ms loss=10
+indonesia:ufpa delay=200ms loss=10
+kisti:waseda delay=39ms loss=10
+lip6:urjc delay=15ms loss=10
+lip6:michigan delay=69ms loss=10
+lip6:ntnu delay=25ms loss=10
+lip6:tno delay=9ms loss=10
+lip6:systemx delay=1ms loss=10
+memphis:michigan delay=12ms loss=10
+memphis:uaslp delay=100ms loss=10
+memphis:wu delay=17ms loss=10
+memphis:ufpa delay=115ms loss=10
+memphis:neu delay=21ms loss=10
+michigan:uiuc delay=5ms loss=10
+michigan:neu delay=14ms loss=10
+michigan:nist delay=13ms loss=10
+minho:urjc delay=13ms loss=10
+minho:padua delay=26ms loss=10
+msu:pkusz delay=71ms loss=10
+msu:srru delay=3ms loss=10
+msu:ucla delay=150ms loss=10
+msu:uum delay=100ms loss=10
+msu:tno delay=120ms loss=10
+mumbai_aws:uum delay=100ms loss=10
+neu:ntnu delay=69ms loss=10
+neu:nist delay=12ms loss=10
+nist:uiuc delay=12ms loss=10
+ntnu:systemx delay=24ms loss=10
+osaka:pkusz delay=63ms loss=10
+osaka:waseda delay=5ms loss=10
+osaka:srru delay=67ms loss=10
+osaka:tongji delay=63ms loss=10
+osaka:uum delay=100ms loss=10
+padua:urjc delay=15ms loss=10
+padua:pkusz delay=170ms loss=10
+padua:uiuc delay=80ms loss=10
+pkusz:tongji delay=54ms loss=10
+pkusz:srru delay=71ms loss=10
+pkusz:waseda delay=98ms loss=10
+remap:ucla delay=1ms loss=10
+remap:uci delay=1ms loss=10
+srru:uum delay=100ms loss=10
+tongji:waseda delay=98ms loss=10
+uaslp:ufpa delay=100ms loss=10
+uci:ucla delay=1ms loss=10
+uiuc:wu delay=9ms loss=10
+urjc:wu delay=86ms loss=10
