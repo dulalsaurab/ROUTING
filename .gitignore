@@ -1,7 +1,3 @@
-# Ignore everything
-*
-
-# But not these files...
-!.gitignore
-!/scripts/
-!/topologies_bkp/
+/*
+!/scripts
+!/topologies_bkp
