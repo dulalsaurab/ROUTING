@@ -6,7 +6,7 @@ from numpy import sin, cos, sinh, cosh, arccos, arccosh
 from collections import defaultdict
 
 def parse_input(args):
-    
+
     parser = argparse.ArgumentParser()
 
     parser._action_groups.pop()
@@ -37,9 +37,9 @@ def compute_RGH_radii(data_dict, sorted_cities, n_seeds):
 
     dim = 2
     zeta = 1.0
-    
+
     rgh_r = dict()  # city -> r
-    
+
     # create region -> city mapping
     region_city_map = defaultdict(set)
     for city in data_dict:
@@ -74,7 +74,7 @@ def compute_RGH_radii(data_dict, sorted_cities, n_seeds):
     for city in nodes_marked:
         seed_pops.append(data_dict[city][1])
         # print "Region", data_dict[city][4], "City:", data_dict[city][0], "Pop:", data_dict[city][1]
-        
+
 
 
     # assign coordinates of new nodes
@@ -122,7 +122,7 @@ def get_distance(model, coors):
         print("Model mispecified! "+model)
         sys.exit()
 
-        
+
 # city data should be of the form: unique_name population latitude longitude region unique_id 
 def read_city_data_from_file(datafile):
 
@@ -134,7 +134,7 @@ def read_city_data_from_file(datafile):
 
             # theta to radians
             theta = (-float(theta) + 90.0) * np.pi / 180.0
-            
+
             # calculate phi
             tmp_phi = float(tmp_phi)
             if float(tmp_phi) < 0.0:
@@ -157,7 +157,7 @@ def write_coordinates_to_file(data_dict, cities_added):
             f.write(str(city) + " " + str(r) + " " + str(theta) + " " + str(phi) + "\n")
     print("Coordinates saved to "+coordinates_file)
 
-    
+
 def write_edgelist_to_file(data_dict, edgelist):
     # go over added edges and measure their delay
     # using (distance + 1164.87669839)/49.4306893399
@@ -185,7 +185,7 @@ def generate_network(N, m, t_start, model, data_dict, randomized, n_seeds, subse
     # we call this function to get all radii if using RGH
     if model.lower() == "rgh":
         rgh_radius = compute_RGH_radii(data_dict, sorted_cities, n_seeds)
-    
+
     t = 0
     for city, _ in sorted_cities:
 
@@ -196,8 +196,8 @@ def generate_network(N, m, t_start, model, data_dict, randomized, n_seeds, subse
             r = (2. / (zeta * dim)) * np.log(t_start + t) #derived for exactly d = 2
         elif model.lower() == "rgh":
             r = rgh_radius[city]
-            
-        p = data_dict[city][1]            
+
+        p = data_dict[city][1]
         #r = np.log(t_start * pop_max / p)
         theta, phi = data_dict[city][2], data_dict[city][3]
         data_dict[city][5] = r
@@ -224,7 +224,7 @@ def generate_network(N, m, t_start, model, data_dict, randomized, n_seeds, subse
             if key in cities_to_consider:
                 new_data_dict[key] = data_dict[key]
 
-        # XXX Here we rewrite sorted_cities with only the subset cities sorted
+        # X Here we rewrite sorted_cities with only the subset cities sorted
         # and from now on, we use sorted_cities for everything
         sorted_cities = sorted(new_data_dict.items(), key=lambda x: x[1][1], reverse=True)
 
@@ -282,19 +282,19 @@ if __name__ == '__main__':
     m = args.m_links
     model = args.network_model
     formatted_city_data = args.city_data
-    
+
     # optional args
     t_start = 5
     if args.t0: t_start = args.t0
     randomized = args.randomized # default = False
     subset_cities = args.cities_subset # default = False
-        
+
     # only for RHG
     n_seeds = 5
     if model.lower() == "rhg" and args.rgh_nseeds:
         n_seeds = args.rgh_n_seeds
 
-        
+
     ## read city data
     data_dict = read_city_data_from_file(formatted_city_data)
 
@@ -304,6 +304,6 @@ if __name__ == '__main__':
     # save coordinates for cities added
     write_coordinates_to_file(data_dict, cities_added)
 
-    # save edgelist 
+    # save edgelist
     write_edgelist_to_file(data_dict, edgelist)
-    
+

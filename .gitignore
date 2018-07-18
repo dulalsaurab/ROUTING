@@ -1,3 +1,9 @@
+<<<<<<< HEAD
 /*
 !/scripts
 !/topologies_bkp
+=======
+bin/
+build/
+.DS_Store
+>>>>>>> a5942dba5f2453120933b93c72f1565c99634e09
