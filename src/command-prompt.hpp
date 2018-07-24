@@ -32,6 +32,25 @@ private:
   void
   getStretch();
 
+  float
+  getGeographicalDistance(float th1, float phi1, float th2, float phi2 );
+ 
+  int 
+  getUnderlayDelay(float th1, float phi1, float th2, float phi2 );
+
+  /*
+   This function computes UDS delay stretch, 
+
+   Steps  
+   1. Read the original file containing the latitude and longitude 
+   2. Compute the geographical delay first 
+   3. compute the hyperbolic delay
+   4. (actual delay in the routing(GGR) / geographical delays between nodes(~underlay delay ) ) 
+  
+ **/
+  void
+  udsDelayStretch();
+
   void
   getTimeouts();
 
@@ -41,11 +60,21 @@ private:
   void
   quit();
 
+  // float 
+  // computePercentile();
+
 private:
+  typedef std::map<std::pair<std::string, std::string>, float> m_UDS;
   typedef std::function<void(const Node&, const Node&)> NodePairCommand;
 
   void
   executeNodePairCommand(const NodePairCommand& command, const std::string& cmdName);
+
+  float 
+  computePercentile(m_UDS&);
+
+  m_UDS m_links_UDS;
+
 
 private:
   const Topology& m_topo;
@@ -56,6 +85,9 @@ private:
 
   bool m_isRunning;
   std::vector<std::string> m_args;
+  // std::vector<std::tuple <std::string, std::string, float>> m_links_UDS;
+  std::map<std::pair<std::string, std::string>, float> m_links_GGR;
+  static const double MATH_PI;
 };
 
  #endif // COMMAND_PROMPT_HPP

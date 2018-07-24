@@ -8,7 +8,7 @@
 
 #include "link.hpp"
 #include "node.hpp"
-
+#include <iostream>
 #include <list>
 #include <map>
 
@@ -110,7 +110,7 @@ public:
     }
   }
 
-private:
+public:
   NodeMap m_nodes;
   std::list<Link> m_links;
 };
