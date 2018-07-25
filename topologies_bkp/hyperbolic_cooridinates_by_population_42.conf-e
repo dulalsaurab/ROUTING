@@ -1,6 +1,6 @@
 [nodes]
 tongji: _ radius=11.1495655496 angle=2.87015
-mumbai_aws: _ radius=12.8934676597 angle=2.95081967213
+mumbai: _ radius=12.8934676597 angle=2.95081967213
 bupt: _ radius=29.2553552716 angle=3.07635893011
 cnic: _ radius=13.0513265591 angle=2.87446074202
 pkusz: _ radius=11.1495655496 angle=2.87016
@@ -52,7 +52,7 @@ anyang:memphis delay=260ms
 anyang:csu delay=241ms
 arizona:kisti delay=229ms
 arizona:nist delay=87ms
-arizona:mumbai_aws delay=311ms
+arizona:mumbai delay=311ms
 basel:tno delay=34ms
 basel:tongji delay=206ms
 basel:pkusz delay=185ms
@@ -62,7 +62,7 @@ bern:tno delay=35ms
 bern:tongji delay=207ms
 bern:goettingen delay=34ms
 bupt:tongji delay=45ms
-bupt:mumbai_aws delay=119ms
+bupt:mumbai delay=119ms
 bupt:cnic delay=23ms
 byu:srru delay=281ms
 byu:pkusz delay=220ms
@@ -71,7 +71,7 @@ cagliari:caruna delay=54ms
 cagliari:urjc delay=46ms
 cagliari:tongji delay=216ms
 cagliari:padua delay=197ms
-caida:mumbai_aws delay=117ms
+caida:mumbai delay=117ms
 caida:kisti delay=43ms
 caida:uci delay=238ms
 caruna:tongji delay=231ms
@@ -80,7 +80,7 @@ caruna:tno delay=50ms
 caruna:urjc delay=33ms
 caruna:padua delay=185ms
 cnic:tongji delay=45ms
-cnic:mumbai_aws delay=119ms
+cnic:mumbai delay=119ms
 cnic:pkusz delay=23ms
 cnic:lip6 delay=189ms
 cnic:systemx delay=189ms
@@ -95,7 +95,7 @@ goettingen:tno delay=31ms
 indonesia:tongji delay=113ms
 indonesia:pkusz delay=129ms
 indonesia:kisti delay=129ms
-kisti:mumbai_aws delay=137ms
+kisti:mumbai delay=137ms
 kisti:pkusz delay=44ms
 kisti:tongji delay=39ms
 kisti:ufpa delay=349ms
@@ -113,7 +113,7 @@ kisti:wu delay=242ms
 kisti:michigan delay=240ms
 lip6:tongji delay=210ms
 lip6:pkusz delay=189ms
-memphis:mumbai_aws delay=301ms
+memphis:mumbai delay=301ms
 memphis:uiuc delay=35ms
 memphis:nist delay=48ms
 memphis:michigan delay=42ms
@@ -123,15 +123,15 @@ minho:tno delay=48ms
 msu:pkusz delay=82ms
 msu:tongji delay=73ms
 msu:srru delay=26ms
-mumbai_aws:tongji delay=125ms
-mumbai_aws:pkusz delay=119ms
-mumbai_aws:waseda delay=159ms
-mumbai_aws:remap delay=306ms
-mumbai_aws:ucla delay=306ms
-mumbai_aws:osaka delay=151ms
-mumbai_aws:uaslp delay=334ms
-mumbai_aws:uci delay=307ms
-mumbai_aws:nist delay=283ms
+mumbai:tongji delay=125ms
+mumbai:pkusz delay=119ms
+mumbai:waseda delay=159ms
+mumbai:remap delay=306ms
+mumbai:ucla delay=306ms
+mumbai:osaka delay=151ms
+mumbai:uaslp delay=334ms
+mumbai:uci delay=307ms
+mumbai:nist delay=283ms
 neu:tongji delay=260ms
 neu:pkusz delay=242ms
 ntnu:pkusz delay=161ms
