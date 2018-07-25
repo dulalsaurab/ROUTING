@@ -95,7 +95,7 @@ float
 CommandPrompt::computePercentile(m_UDS& uds){
 
 // create an iterator to access elements of map
-  float _95_percentile, _75_percentile, _50_percentile, _25_percentile;
+  float _90_percentile, _75_percentile, _50_percentile, _25_percentile;
   std::map<std::pair<std::string, std::string>, float> :: iterator iterator_name;
   std::vector<float> v;
   int i = 0;
@@ -107,14 +107,14 @@ CommandPrompt::computePercentile(m_UDS& uds){
   std::sort(v.begin(), v.end());
 
   int size = v.size();
-  _95_percentile = 0.95*size; 
+  _90_percentile = 0.90*size; 
   _75_percentile = 0.75*size; 
   _50_percentile = 0.50*size; 
   _25_percentile = 0.25*size; 
   std::cout << "25th percentile: " << v[(int)_25_percentile] << "\n"
             << "50th percentile: " << v[(int)_50_percentile] << "\n"
             << "75th percentile: " << v[(int)_75_percentile] << "\n"
-            << "95th percentile: " << v[(int)_95_percentile]
+            << "90th percentile: " << v[(int)_90_percentile]
             << std::endl;
   return 0.0;
 }
@@ -130,7 +130,7 @@ CommandPrompt::getGeographicalDistance(float th1, float phi1, float th2, float p
 
 int 
 CommandPrompt::getUnderlayDelay( float th1, float phi1, float th2, float phi2 ){
-  
+
   return (int)(getGeographicalDistance(th1, phi1, th2, phi2) + 1164.87669839) / 49.4306893399 ;
 }
 
@@ -222,6 +222,7 @@ CommandPrompt::udsDelayStretch(){
       }
     } 
   }
+  std::cout << "Average UDS delay: " << (averageUDSdelay/count) << std::endl;
   computePercentile(m_links_UDS);
 
 }
@@ -257,7 +258,6 @@ CommandPrompt::getNextHopDifference()
       std::cout << "nexthop-diff(" << src.getName() << ", " << dst.getName()
                 << ") = " << difference << std::endl;
     };
-
   executeNodePairCommand(command, "diff");
 }
 
