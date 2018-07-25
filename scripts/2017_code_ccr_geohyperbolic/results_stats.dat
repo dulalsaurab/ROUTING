@@ -1,0 +1,16 @@
+Success Ratio: 1.0
+Average ODS: 1.09896084394
+Average UDS: 1.51034582462
+Worst path ODS: 2.63994311526
+ODS 50-th percentile: 1.0
+ODS 75-th percentile: 1.08075185278
+ODS 80-th percentile: 1.14366221943
+ODS 90-th percentile: 1.44031319113
+ODS 95-th percentile: 1.57429990182
+ODS 99-th percentile: 1.76999848351
+UDS 50-th percentile: 1.308015
+UDS 75-th percentile: 1.63472
+UDS 80-th percentile: 1.864338
+UDS 90-th percentile: 2.30728
+UDS 95-th percentile: 2.5302755
+UDS 99-th percentile: 3.605408
