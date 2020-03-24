@@ -1,0 +1,41 @@
+Have ping-data for each node inside hr and ls folders (Pingall experiment):
+
+1) nfd-cdf-med.sh
+2) get-rtt-cdfs.sh
+3) plot-rtt-cdfs.sh
+
+Failure experiment:
+
+1) convergedata.sh
+2) plot-converge-csu.sh
+
+Failure experiment with time as x axis:
+
+1) convergedata-bytime.sh
+2) plot-convergence-bytime-csu.sh
+
+% Packet Loss (% Timeout)
+
+1) timeout-percentage.sh (does everything - modified combination of nfd-cdf-med.sh + combine-med.sh + plot-med.sh)
+2) get-timeout-cdfs.sh
+3) plot-timeout-cdfs.sh
+
+Sorted Timeout %
+
+1) timeout-percentage-sorted.sh
+   will have to tweak what exactly you want to plot, currently plotting 4 faces
+
+Counting Messages:
+
+1) ndndump-count-msgs.sh
+   -->total results stored in face-$/msgs.count
+   -->node results stored in node.msgs
+
+-----------------------------------------------
+Does not currently apply, was to be used such that it creates a new folder each time you run it inside the dir to store processed info.
+But I don't have those changes any longer in 4-get-failure-stretch.sh since we use a different wrapper now (create-stretch-graphs)
+Moved to old files for the moment
+Failure stretch:
+
+1) failure-stretch-wrapper.sh (might have to tweak plot-failure-stretch for multiple failure experiment)
+   --> Don't worry about the divide by zero error
